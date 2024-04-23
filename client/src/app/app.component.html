@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nexus</title>
+</head>
+<body>
+    <header class="row">
+        <div class="col-2">
+            <p class="myLogo"><a (click)="goToHome()" title="Go to home">NCE</a></p>
+        </div>
+        <div class="col-8">
+            <h1>Nexus College of Engineering</h1>
+            <p>Where Innovation Meets Education!</p>
+        </div>
+        <div class="col-2" *ngIf="(auth.currentUser$) as user">
+            <div>
+                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.source._value.firstName">Welcome {{user.source._value.firstName+' '+user.source._value.lastName}}</label>
+                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.source._value.firstName">Logged in as a {{user.source._value.userType}}</label>
+                <button class="btn btn-info mt-2 w-100" (click)="Logout()" *ngIf="user.source._value.firstName">Logout</button>
+            </div>
+        </div>
+    </header>
+    <div style="min-height:500px;">
+        <router-outlet></router-outlet>
+    </div>
+    <footer>
+        <p>&copy; 2024 NCE. All rights reserved.</p>
+        <br />
+        <p>Built using Angular, .Net Core Web Api</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee {
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.jumbotron {
+  background-color: #f8f9fa;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.jumbotron h1 {
+    font-size: 3em;
+}
+
+.jumbotron p {
+    font-size: 1.2em;
+    color: #6c757d;
+}
+
+
+.carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Styles for individual slides */
+.carousel img {
+  width: 100%;
+  display: block;
+}
+
+/* Styles for navigation arrows */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}

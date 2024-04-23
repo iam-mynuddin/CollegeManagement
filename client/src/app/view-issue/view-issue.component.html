@@ -1,0 +1,19 @@
+<h1>RAISED ISSUES</h1>
+<div class="col-md-8 mt-4 mb-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ticket No</th>
+                <th>Added By</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+            <tr *ngFor="let issue of issues">
+                <td>{{issue.ticket}}</td>
+                <td>{{issue.user.firstName+' '+issue.user.lastName}}</td>
+                <td>{{issue.description}}</td>
+                <td>{{isRedsolved? 'Closed':'Pending'}}</td>
+            </tr>
+        </thead>
+    </table>
+</div>

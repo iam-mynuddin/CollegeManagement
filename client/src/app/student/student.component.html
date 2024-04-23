@@ -1,0 +1,80 @@
+
+<nav>
+    <table class="table mt-3">
+            <tr>
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Attendance
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/viewattendance']">View Attendance</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Fee Details
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/viewfeesdetails']">View Fee Details</a></li>
+                        </ul>
+                    </div>
+                </td>
+
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Calender
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/viewcalender']" >View Schedules</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Assignment Details
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/viewassignment']">View Assignment</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Leave Details
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/leaverequest']">Request Leave</a></li>
+                            <li><a class="dropdown-item" [routerLink]="['/viewleave']">View Leave Request</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="col userDefWidth">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                            Issue Details
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/addissue']">Raise Issues</a></li>
+                            <li><a class="dropdown-item" [routerLink]="['/viewissue']">View Issues</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="col userDefWidtd">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">Account</button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" [routerLink]="['/userlogin']">Login page</a></li>
+                            <li><a class="dropdown-item" [routerLink]="['/account']">Edit / Update account</a></li>
+                        </ul>
+                    </div>
+                </td>
+    </table>
+    <router-outlet></router-outlet>
+</nav>
+

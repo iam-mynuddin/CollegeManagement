@@ -1,0 +1,18 @@
+<h1>FEE DETAILS</h1>
+<div class="mt-4 mb-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Id</th>
+                <th>Amount</th>
+                <th>Last date for payment</th>             
+            </tr>
+            <tr *ngFor="let f of feedetails">
+              <th>{{f.studentId}}</th>
+              <th>{{f.amount}} INR</th>
+              <th>{{formatDate(f.dateOfPayment.toString())}}</th>             
+            </tr>
+        </thead>
+    </table>
+</div>
+
