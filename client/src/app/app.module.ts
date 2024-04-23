@@ -35,15 +35,18 @@ import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
 import { StudentModule } from './student/student.module';
 
+import { StudentRoutingModule } from './student/student-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     UserloginComponent,
     HomeComponent,
+    StudentComponent,
     ParentComponent,
     FacultyComponent,
     AdminComponent,
-    StudentComponent,
     AddCalenderComponent,
     ViewCalenderComponent,
     AddAssignmentComponent,
@@ -59,7 +62,8 @@ import { StudentModule } from './student/student.module';
     LeaveHistoryComponent,
     SuperSecretComponent,
     AccountComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,7 @@ import { StudentModule } from './student/student.module';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StudentModule
+    StudentRoutingModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

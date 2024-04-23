@@ -10,6 +10,8 @@ import { ViewIssueComponent } from '../view-issue/view-issue.component';
 import { ViewLeaveComponent } from '../view-leave/view-leave.component';
 import { LeaveRequestComponent } from '../leave-request/leave-request.component';
 import { StudentComponent } from './student.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
+import { AccountComponent } from '../account/account.component';
 
 
 const routes: Routes = [
@@ -23,8 +25,10 @@ const routes: Routes = [
       { path: 'viewleave', component: ViewLeaveComponent },
       { path: 'leaverequest', component: LeaveRequestComponent },
       { path: 'leavehistory', component: LeaveHistoryComponent },
-  ] },
-  
+      {path:'account',component:AccountComponent},
+      { path: '',  component: DashboardComponent }
+    ]
+  },
 ];
 
 

@@ -23,8 +23,32 @@ export class AppComponent implements OnInit {
     this.setCurrentUser();
   }
   goToHome() {
-    this.router.navigateByUrl('/home')
+    let userType: any = ''
+    this.auth.currentUser$.subscribe({
+      next: res => {
+        userType = res.userType;
+      },
+      error: err => { userType = 'none'; }
+    }
+    );
+    if (userType == 'Student') {
+      this.router.navigate(['/student']);
+    }
+    else if (userType == 'Admin') {
+      this.router.navigate(['/admin']);
+    }
+    else if (userType == 'Faculty') {
+      this.router.navigate(['/faculty'])
+    }
+    else if (userType == 'Parent') {
+      this.router.navigate(['/parent'])
+    }
+    else
+      this.router.navigateByUrl('/home')
   }
+    
+
+
   setCurrentUser() {
     //const user: User = JSON.parse(localStorage.getItem('user')!);
     const strUser = localStorage.getItem('user');
@@ -34,6 +58,7 @@ export class AppComponent implements OnInit {
   }
   Logout() {
     this.auth.Logout();
+    this.router.navigateByUrl('/')
   }
 
 }

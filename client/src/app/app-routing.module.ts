@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'app',component:AppComponent},
   {path:'userlogin',component:UserloginComponent},
   {path:'home',component:HomeComponent},
-  {path:'student',component:StudentComponent},
+  //{path:'student',component:StudentComponent},
   {path:'admin',component:AdminComponent},
   {path:'faculty',component:FacultyComponent},
   {path:'parent',component:ParentComponent},
@@ -49,7 +49,8 @@ const routes: Routes = [
   {path:'leaverequest',component:LeaveRequestComponent},
   {path:'leavehistory',component:LeaveHistoryComponent},
   {path:'supersecret',component:SuperSecretComponent},
-  {path:'register',component:RegisterComponent},
+  {path:'register', component: RegisterComponent },
+  
   {path:'',redirectTo:'home', pathMatch: 'full' }
 ];
 

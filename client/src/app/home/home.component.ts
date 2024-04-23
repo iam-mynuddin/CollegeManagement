@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
     this.http.get('https://localhost:7141/api/home/homepagedetails').subscribe({
       next: result => {
         this.homeDetails = result;
-        console.log(result);
         if (Array.isArray(result)) {
         const scrollingNotification = this.homeDetails.find((item: any) => item.key === "ScrollingNotification");
         if (scrollingNotification) {
