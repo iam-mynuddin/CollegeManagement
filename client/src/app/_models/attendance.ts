@@ -1,3 +1,10 @@
 export class Attendance {
-    constructor(public AttendanceId:number,public FacultyId:number,public StudentId:number, public AttendanceDate:Date, public IsPresent:string) { }
+  constructor(
+    public AttendanceId: number,
+    public AttendanceDate: Date,
+    public StudentId: number,
+    public FacultyId: number,
+    public IsPresent: boolean
+  )
+  { }
   }

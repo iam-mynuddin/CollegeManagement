@@ -31,14 +31,8 @@ namespace CollegeManagement.Server.Controllers
         [Route("getassignments")]
         public IActionResult GetAssignments()
         {
-            var entry = _dbContext.Assignments.ToList();
-
-            List<Assignment> dto = new List<Assignment>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new Assignment { AssignmentId = entries.AssignmentId, Question = entries.Question, SubmissionTime = entries.SubmissionTime, StudentId = entries.StudentId, CourseCode = entries.CourseCode });
-            }
-            return Ok(dto);
+            var objList = _dbContext.Assignments.ToList();
+            return Ok(objList);
         }
         [HttpGet]
         [Route("getassignmentbyid/{studentid}")]

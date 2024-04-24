@@ -8,8 +8,8 @@
                         Fee Details
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" [routerLink]="['/addfeesdetails']">Update fee details</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/viewfeesdetails']">View fee details</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['addfeedetails']">Update fee details</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['viewfeedetails']">View fee details</a></li>
                     </ul>
                 </div>
             </td>
@@ -19,8 +19,8 @@
                         Calender
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" [routerLink]="['/addcalender']">Add schedules</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/viewcalender']">View schedules</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['addcalender']">Add schedules</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['viewcalender']">View schedules</a></li>
                     </ul>
                 </div>
             </td>
@@ -30,7 +30,7 @@
                         Leave Details
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" [routerLink]="['/leavehistory']">Leave history Of Students</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['leavehistory']">Leave history Of Students</a></li>
                     </ul>
                 </div>
             </td>
@@ -40,7 +40,7 @@
                         Issue Details
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" [routerLink]="['/viewissue']">View Issues</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['viewissue']">View Issues</a></li>
                     </ul>
                 </div>
             </td>
@@ -48,11 +48,11 @@
                 <div class="dropdown">
                     <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">Account</button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" [routerLink]="['/userlogin']">Login page</a></li>
                         <li><a class="dropdown-item" [routerLink]="['userlogin']">Login page</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['account']">Change Account Details</a></li>
                     </ul>
                 </div>
             </td>
     </table>
 </nav>
-
+<router-outlet>

@@ -11,12 +11,9 @@ namespace CollegeManagement.Models
    public class IssueReport
     {
         [Key]
-
-        public long Ticket { get; set; }
+        public long TicketId { get; set; }
         public string Description { get; set; }
-
         public bool IsResolved { get; set; }
-
         public int? UserId { get; set; }
         [ForeignKey("UserId")]
         public User? User { get; set; }

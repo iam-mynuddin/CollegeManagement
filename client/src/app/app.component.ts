@@ -45,10 +45,7 @@ export class AppComponent implements OnInit {
     }
     else
       this.router.navigateByUrl('/home')
-  }
-    
-
-
+  } 
   setCurrentUser() {
     //const user: User = JSON.parse(localStorage.getItem('user')!);
     const strUser = localStorage.getItem('user');

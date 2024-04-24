@@ -17,14 +17,8 @@ namespace CollegeManagement.Server.Controllers
         [Route("getfeedetails")]
         public IActionResult GetFeeDetails()
         {
-            var entry = _dbContext.FeeDetails.ToList();
-
-            List<FeeDetail> dto = new List<FeeDetail>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new FeeDetail { FeeId = entries.FeeId, Amount = entries.Amount, DateOfPayment = entries.DateOfPayment, StudentId = entries.StudentId });
-            }
-            return Ok(dto);
+            var objList = _dbContext.FeeDetails.ToList();
+            return Ok(objList);
 
         }
         [HttpPost("uploadfeedetails")]
@@ -33,13 +27,12 @@ namespace CollegeManagement.Server.Controllers
             try
             {
                 var entry = _dbContext.FeeDetails.Add(obj);
-
+                _dbContext.SaveChanges();
                 return Ok();
             }
             catch
             {
-                return
-                    BadRequest("Failed to add data");
+                return BadRequest("Failed to add data");
             }
         }
 

@@ -32,9 +32,9 @@ const routes: Routes = [
   {path:'userlogin',component:UserloginComponent},
   {path:'home',component:HomeComponent},
   //{path:'student',component:StudentComponent},
-  {path:'admin',component:AdminComponent},
-  {path:'faculty',component:FacultyComponent},
-  {path:'parent',component:ParentComponent},
+  //{path:'admin',component:AdminComponent},
+  //{path:'faculty',component:FacultyComponent},
+  //{path:'parent',component:ParentComponent},
   {path:'addcalender',component:AddCalenderComponent},
   {path:'viewcalender',component:ViewCalenderComponent},
   {path:'addattendance',component:AddAttendanceComponent},
@@ -49,9 +49,8 @@ const routes: Routes = [
   {path:'leaverequest',component:LeaveRequestComponent},
   {path:'leavehistory',component:LeaveHistoryComponent},
   {path:'supersecret',component:SuperSecretComponent},
-  {path:'register', component: RegisterComponent },
-  
-  {path:'',redirectTo:'home', pathMatch: 'full' }
+  {path:'register', component: RegisterComponent },  
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -10,13 +10,13 @@ namespace CollegeManagement.Models
 {
    public  class FacultyCourse
     {
-        [Key]
-        public int FacultyCourseId { get; set; }
-
+        public int Id { get; set; }
+        public int CourseId { get; set; }
+        [ForeignKey("CourseId")]
+        public Course? Course { get; set; }
         public string CourseName { get; set; }
-
         public int? FacultyId { get; set; }
-        //[ForeignKey("FacultyId")]
-        //public Faculty? Faculty { get; set; }
+        [ForeignKey("FacultyId")]
+        public Faculty? Faculty { get; set; }
     }
 }

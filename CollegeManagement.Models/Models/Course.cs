@@ -11,15 +11,12 @@ namespace CollegeManagement.Models
     public class Course
     {
         [Key]
-        public int CourseCode { get; set; }
-
+        public int CourseId { get; set; }
         [Required]
         public string CourseName { get; set; }
-
         public int? StudentId { get; set; }
         //[ForeignKey("StudentId")]
         //public Student? Student { get; set; }
-
         public int? FacultyId { get; set; }
         //[ForeignKey("FacultyId")]
         //public Faculty? Faculty { get; set; }

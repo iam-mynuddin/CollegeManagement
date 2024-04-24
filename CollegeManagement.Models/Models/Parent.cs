@@ -12,12 +12,10 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int ParentId { get; set; }
-
-
         public string? ParentAddress { get; set; }
-
-        public int? UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public User? User { get; set; }
+		public string? MobileNumber { get; set; }
+		public int? UserId { get; set; }
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
     }
 }

@@ -12,15 +12,14 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int FeeId { get; set; }
-
         public double Amount { get; set; }
-
-        public DateTime DateOfPayment { get; set; }
-
+        public string FeeName {  get; set; }
+        public DateOnly DueDate { get; set; }
+        public DateOnly PaymentDate { get; set; }
+        public bool HasPaid {  get; set; }
         public int? StudentId { get; set; }
-        //[ForeignKey("StudentId")]
-        //public Student? Student { get; set; }
+        [ForeignKey("StudentId")]
+        public Student? Student { get; set; }
 
-        
     }
 }

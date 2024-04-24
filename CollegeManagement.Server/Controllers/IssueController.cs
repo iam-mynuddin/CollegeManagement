@@ -19,12 +19,6 @@ namespace CollegeManagement.Server.Controllers
         public IActionResult GetIssueReports()
         {
             var objList = _dbContext.IssueReports.Include(u=>u.User).ToList();
-
-            //List<IssueReport> dto = new List<IssueReport>();
-            //foreach (var obj in objList)
-            //{
-            //    dto.Add(new IssueReport { Ticket = obj.Ticket, Description = obj.Description, UserId = obj.UserId });
-            //}
             return Ok(objList);
         }
 		[HttpPost("raiseissue")]
@@ -66,7 +60,7 @@ namespace CollegeManagement.Server.Controllers
         [Route("put/{ticketId}")]
         public IActionResult put(int ticketId)
         {
-            var boolResult = _dbContext.IssueReports.Any(x => x.Ticket == ticketId);
+            var boolResult = _dbContext.IssueReports.Any(x => x.TicketId == ticketId);
             if (boolResult == true)
             {
                 return Ok();

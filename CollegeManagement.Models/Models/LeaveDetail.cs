@@ -10,18 +10,13 @@ namespace CollegeManagement.Models
 {
     public class LeaveDetail
     {
-        [Key]
-        public int LeaveDetailsId { get; set; }
-
+        public int Id { get; set; }
         public string Reason { get; set; }
-
-        public DateTime DateOfLeave { get; set; }
-
+        public DateOnly DateOfLeave { get; set; }
         public bool IsApproved { get; set; }
-
-        public int? UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public User? User { get; set; }
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
 
     }
 }

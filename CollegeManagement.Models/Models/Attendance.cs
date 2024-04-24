@@ -12,15 +12,11 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int AttendanceId { get; set; }
-
-        public DateTime AttendanceDate { get; set; }
-
-        public string IsPresent { get; set; }
-
+        public DateOnly AttendanceDate { get; set; }
+        public bool IsPresent { get; set; }
         public int? StudentId { get; set; }
         //[ForeignKey("StudentId")]
         //public Student? Student { get; set; }
-
         public int? FacultyId { get; set; }
         //[ForeignKey("FacultyId")]
         //public Faculty? Faculty { get; set; }

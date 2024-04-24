@@ -11,11 +11,9 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int CalendarId { get; set; }
-
+        public string Message {  get; set; }
         public DateTime DateOfEdit { get; set; }
-
         public string Status { get; set; }
-
         public string Reason { get; set; }
     }
 }

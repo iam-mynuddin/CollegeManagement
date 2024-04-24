@@ -12,18 +12,13 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int FacultyId { get; set; }
-
         public string FacultyMail { get; set; }
-
-        public long FacultyMobileNo { get; set; }
-
-        public string FacultyAddress { get; set; }
-
+		public string? MobileNumber { get; set; }
+		public string FacultyAddress { get; set; }
         public DateTime FacultyDoj { get; set; }
-
         public int? UserId { get; set; }
-        //[ForeignKey("UserId")]
-        //public User? User { get; set; }
+        [ForeignKey("UserId")]
+        public User? User { get; set; }
 
 
     }

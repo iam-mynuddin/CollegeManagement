@@ -33,10 +33,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SuperSecretComponent } from './super-secret/super-secret.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { StudentModule } from './student/student.module';
+import { ParentModule } from './parent/parent.module';
+import { AdminModule } from './admin/admin.module';
+import { FacultyModule } from './faculty/faculty.module';
 
 import { StudentRoutingModule } from './student/student-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { ParentRoutingModule } from './parent/parent-routing.module';
+import { AdminRoutingModule } from './admin/admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -73,7 +79,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RouterModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StudentRoutingModule
+    StudentRoutingModule,
+    ParentRoutingModule,
+    AdminRoutingModule,
+    AppRoutingModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

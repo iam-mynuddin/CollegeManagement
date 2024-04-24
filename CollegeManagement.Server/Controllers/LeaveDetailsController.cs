@@ -45,15 +45,8 @@ namespace CollegeManagement.Server.Controllers
         [Route("getattendance")]
         public IActionResult GetAttendance()
         {
-            var entry = _dbContext.LeaveDetails.ToList();
-
-            List<LeaveDetail> dto = new List<LeaveDetail>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new LeaveDetail { DateOfLeave = entries.DateOfLeave, Reason = entries.Reason, LeaveDetailsId = entries.LeaveDetailsId, UserId = entries.UserId });
-            }
-            return Ok(dto);
-
+            var objList = _dbContext.LeaveDetails.ToList();
+            return Ok(objList);
 
         }
         [HttpGet]
@@ -81,7 +74,7 @@ namespace CollegeManagement.Server.Controllers
         [Route("put/{LeaveDetailsId}")]
         public IActionResult put(int LeaveDetailsId)
         {
-            var boolResult = _dbContext.LeaveDetails.Any(x => x.LeaveDetailsId == LeaveDetailsId);
+            var boolResult = _dbContext.LeaveDetails.Any(x => x.Id == LeaveDetailsId);
             if (boolResult)
             {
                 return Ok();
