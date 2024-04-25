@@ -1,5 +1,6 @@
 ﻿
 using CollegeManagement.Data;
+using CollegeManagement.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,13 @@ namespace CollegeManagement.Server.Controllers
 		public DataController(ApplicationDbContext dbContext)
 		{
 			_dbContext = dbContext;
+		}
+		[HttpGet("getallusers")]
+		public IActionResult GetAllUsers()
+		{
+			var objList = _dbContext.Users.Select(u=> 
+			new UserDto { UserId=u.UserId,FullName=u.FirstName+" "+u.LastName,UserName=u.UserName,UserType=u.UserType}).ToList();
+			return Ok(objList);
 		}
 		[HttpGet("getallfaculty")]
 		public IActionResult GetAllFaculty()
@@ -43,5 +51,6 @@ namespace CollegeManagement.Server.Controllers
 			var objList = _dbContext.Subjects.Include(u=>u.Course).ToList();
 			return Ok(objList);
 		}
+		
 	}
 }

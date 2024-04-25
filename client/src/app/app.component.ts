@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
+import { User } from './_models/user';
+import { map } from 'rxjs';
 
 interface WeatherForecast {
   date: string;
@@ -21,16 +23,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.setCurrentUser();
+    //console.log(this.auth.currentUser$);
   }
   goToHome() {
-    let userType: any = ''
-    this.auth.currentUser$.subscribe({
-      next: res => {
-        userType = res.userType;
-      },
-      error: err => { userType = 'none'; }
-    }
-    );
+    let userType = this.auth.strCurrentUserType;
     if (userType == 'Student') {
       this.router.navigate(['/student']);
     }
@@ -45,16 +41,18 @@ export class AppComponent implements OnInit {
     }
     else
       this.router.navigateByUrl('/home')
-  } 
+    } 
   setCurrentUser() {
-    //const user: User = JSON.parse(localStorage.getItem('user')!);
     const strUser = localStorage.getItem('user');
     if (!strUser) return;
-    const user: any = JSON.parse(strUser);
-    this.auth.SetCurrentUser(user);
+    const user: User = JSON.parse(strUser);
+    //console.log(user);
+    this.auth.strCurrentUserType = user.userType;
+    this.auth.strCurrentUser = user.userName;
+    this.auth.setCurrentUser(user);
   }
-  Logout() {
-    this.auth.Logout();
+  logout() {
+    this.auth.logout();
     this.router.navigateByUrl('/')
   }
 

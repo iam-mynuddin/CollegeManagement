@@ -1,22 +1,22 @@
-<form [formGroup]="issue">
-   
-    
-    
-    <div class="form-group col-md-4">
-      <label for="">Enter Your User Id</label>
-      <input type="number" name="UserId" class="form-control" formControlName="UserId">
-    </div><br>
 
-    <div class="form-group col-md-4">
-      <label for="">Description</label>
-      <select name="Status" class="form-control" formControlName="Description">
-        <option value="Assignment marks not updated">Assignment marks not updated</option>>
-        <option value="Fees Paid but not updated">Fees Paid but not updated</option>
-        <option value="Leave details not updated">Leave details not updated</option>
-        <option value="Login Id reset">Login Id reset</option>
-        <option value="App not Responding">App not Responding</option>
-      </select>
-    </div><br>
-    
-    <button type="submit" (click)="addissue()" class="btn btn-primary">add</button>
-    </form>
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <form #raiseIssueForm="ngForm" (ngSubmit)="raiseIssue()">
+            <div class="form-group mb-3">
+                <label for="userId" class="fw-bold mb-1">Your name:</label>
+                <select class="form-select" id="userId" name="userId" [(ngModel)]="source.userId">
+                    <option selected>Select an option</option>
+                    <option *ngFor="let obj of allUsers" [value]="obj.userId">{{obj.fullName}}</option>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="userDesc" class="fw-bold mb-1">Issue Description:</label>
+                <textarea class="form-control" id="userDesc" name="description" rows="4" [(ngModel)]="source.description"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

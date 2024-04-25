@@ -13,11 +13,11 @@
             <h1>Nexus College of Engineering</h1>
             <p>Where Innovation Meets Education!</p>
         </div>
-        <div class="col-2" *ngIf="(auth.currentUser$) as user">
+        <div class="col-2" *ngIf="(auth.currentUser$|async) as user">
             <div>
-                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.source._value.firstName">Welcome {{user.source._value.firstName+' '+user.source._value.lastName}}</label>
-                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.source._value.firstName">Logged in as a {{user.source._value.userType}}</label>
-                <button class="btn btn-info mt-2 w-100" (click)="Logout()" *ngIf="user.source._value.firstName">Logout</button>
+                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.firstName">Welcome {{user.firstName+' '+user.lastName}}</label>
+                <label class="w-100" style="text-align:left;padding-left:3px;" *ngIf="user.userType">Logged in as a {{user.userType}}</label>
+                <button class="btn btn-info mt-2 w-100" (click)="logout()">Logout</button>
             </div>
         </div>
     </header>

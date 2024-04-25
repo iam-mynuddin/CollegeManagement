@@ -21,6 +21,7 @@ namespace CollegeManagement.Models.DTOs
 		public string? StudentYear { get; set; }
 		public string? UserType { get; set; }
 		public string? Department { get; set; }
+		public string? FullName { get; set; }
 		public int? UserId { get; set; }
 	}
 }

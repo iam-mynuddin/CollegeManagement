@@ -27,7 +27,9 @@ namespace CollegeManagement.Server.Controllers
             try
             {
                 _dbContext.IssueReports.Add(obj);
-                return Ok();
+                _dbContext.SaveChanges();
+                _dbContext.Entry(obj).Reload();
+                return Ok(obj);
             }
             catch
             {
@@ -38,7 +40,6 @@ namespace CollegeManagement.Server.Controllers
         [Route("getissuebyid/{userId}")]
         public IActionResult GetIssueById(int userId)
         {
-
             if (userId != 0)
             {
                 if (!ModelState.IsValid)
@@ -50,7 +51,6 @@ namespace CollegeManagement.Server.Controllers
                 }
 
             }
-
             return NotFound();
         }
         //pending - rename

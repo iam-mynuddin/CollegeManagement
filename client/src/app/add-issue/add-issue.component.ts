@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { GetDataService } from '../_services/get-data.service';
 
 @Component({
   selector: 'app-add-issue',
@@ -8,36 +9,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-issue.component.css']
 })
 export class AddIssueComponent implements OnInit {
-
-  
-  issue:any;
-
-
-  constructor(private http:HttpClient,private fb :FormBuilder) {
-    this.issue=this.fb.group({
-      UserId:['',[Validators.required]],
-      Description:['',[Validators.required]]
-
-    
-    });
-   }
+  source: any = {};
+  faculties: any;
+  allUsers: any;
+  constructor(private http:HttpClient,private getData:GetDataService) {
+  }
 
   ngOnInit(): void {
+    this.getData.getAllFaculty().subscribe(result => { this.faculties = result; })
+    this.getData.getAllUsers().subscribe(result => { this.allUsers = result; })    
   }
+  raiseIssue() {
+    //console.log(this.source);
+    this.http.post('https://localhost:7141/api/issue/raiseissue', this.source).subscribe({
+      next: response => {
+        alert('Issue raised!');
 
-  addissue(){
-    const iss={
-      UserId:this.issue.get("UserId")?.value,
-      Description:this.issue.get("Description")?.value
-     
-    }
-    this.http.post('https://localhost:7141/api/issue/raiseissue', iss).subscribe(
-      (data)=>{alert('saved successfully');},
-      (err)=>{console.log(err);
-        alert('Error saving data');
+      },
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
     });
-        
-    
+  }
   }
 
-}

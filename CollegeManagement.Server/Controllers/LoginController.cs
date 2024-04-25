@@ -23,7 +23,13 @@ namespace CollegeManagement.Server.Controllers
             var res = _dbContext.Users.FirstOrDefault(x => (x.UserName == user.UserName ||x.Email==user.MailId) && x.Password == user.Password);
             if (res == null)
                 return Unauthorized("Invalid password");
-            return Ok(res);
+            UserDto userDto = new();
+            userDto.UserName = res.UserName;
+            userDto.UserId = res.UserId;
+            userDto.FirstName = res.FirstName;
+            userDto.LastName = res.LastName;
+            userDto.UserType=res.UserType;
+            return Ok(userDto);
         }
         [HttpGet("supersecret")]
         public ActionResult<IEnumerable<User>> SuperSecret() 

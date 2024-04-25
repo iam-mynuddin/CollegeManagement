@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -10,42 +11,31 @@ import { catchError, map, retry } from 'rxjs/operators';
 
 export class AuthService {
   url: string = "https://localhost:7141/api/login/login";
+  public strCurrentUser: any;
+  public strCurrentUserType: any;
 
-  private isLoggedIn = new BehaviorSubject<boolean>(false);
-  private CallMethodSource = new Subject<any>();
-  CallMethodSource$ = this.CallMethodSource.asObservable();
-
-  private currentUserSource = new BehaviorSubject<any>({});
+  public currentUserSource = new BehaviorSubject<User|null>(null);
   currentUser$ = this.currentUserSource.asObservable();
-
-  SetCurrentUser(user: any) {
-    this.currentUserSource.next(user)
-  }
-
-  SetAuthenticated() {
-    this.CallMethodSource.next(true);
-  }
-  OnLoggedIn = this.isLoggedIn.asObservable(); 
 
   constructor(private http: HttpClient, private router: Router) {
   }
-
-  isAuthenticated(status: boolean) {
-    this.isLoggedIn.next(status);
+  setCurrentUser(user: User) {
+    this.currentUserSource.next(user)
   }
-  Validate(userDetails: any) {
+  validateLogin(userDetails: any) {
     return this.http.post(this.url, userDetails).pipe(
       map((response: any) => {
+        console.log(response);
         this.currentUserSource.next(response);
+        this.strCurrentUser = response.userName;
+        this.strCurrentUserType = response.userType;
         localStorage.setItem('user', JSON.stringify(response));
-        //console.log(response);
         return response;
       }
       ));
   }
-  Logout() {
-    this.isLoggedIn.next(false);
+  logout() {
     localStorage.removeItem('user');  
-    this.currentUserSource.next({});
+    this.currentUserSource.next(null);
   }
 }

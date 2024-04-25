@@ -1,3 +1,10 @@
 export class  User  {
-    constructor(public UserName:string,public Password:string, public UserType:string,public FirstName:string,public LastName:string) {}
+  constructor
+  (
+    public userName: string,
+    public userId: string,
+    public firstName: string,
+    public lastName: string,
+    public userType: string
+  ) { }
 }

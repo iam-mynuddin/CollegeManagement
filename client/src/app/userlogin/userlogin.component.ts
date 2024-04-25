@@ -10,43 +10,19 @@ import { User } from '../_models/user';
   styleUrls: ['./userlogin.component.css']
 })
 export class UserloginComponent implements OnInit {
-
-  submitted: boolean = false;
-  loginForm: any;
-  flag: any;
-
-  selectedType: string = '';
-  userID!: number;
-  user!: User;
+  source: any = {};
   constructor(private authService: AuthService, private router: Router, public formBuilder: FormBuilder) {
   }
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      UserName: ['', [Validators.compose([Validators.required])]],
-      Password: ['', [Validators.required, Validators.minLength(3)]],
-    });
+    
   }
   ngOnDestroy() { }
-  get f() {
-    return this.loginForm.controls;
-  }
-
-
-  Login() {
-    this.submitted = true;
-    const userDetails = {
-      UserName: this.loginForm.get("UserName")?.value,
-      Password: this.loginForm.get('Password')?.value
-    }
-    this.authService.Validate(userDetails).subscribe({
+  
+  loginUser() {
+    this.authService.validateLogin(this.source).subscribe({
       next: (res: any) => {
         if (res) {
-          this.authService.isAuthenticated(true);
-          this.flag = res;
-          this.user = res;
-          this.userID = res.UserId;
-          console.log(this.authService.currentUser$);
-
+          //console.log(this.authService.currentUser$);
           if (res.userType == 'Student') {
             this.router.navigate(['/student']);
           }
@@ -64,7 +40,6 @@ export class UserloginComponent implements OnInit {
         }
       },
       error: (error: any) => {
-        this.authService.isAuthenticated(false);
         console.log(error);
         alert(error.error);
       }

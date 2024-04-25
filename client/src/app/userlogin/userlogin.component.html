@@ -1,33 +1,30 @@
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card p-4 shadow-lg">
-                    <div class="d-flex justify-content-center">
-                        <form [formGroup]='loginForm' >
-                            <div>
-                                <div class="form-group col-12 mb-3">
-                                    <label for="username" style="padding-bottom: 10px;">Username / Email </label><span style="color: red;"> *</span>
-                                    <input type="text" class="form-control w-100" placeholder="Enter email / username" id="username" formControlName="UserName">
-                                    <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.UserName.errors.required">Username is required</div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-12 mb-3">
-                                    <label for="password" style="padding-bottom: 10px;">Password</label><span style="color: red;"> *</span>
-                                    <input type="password" class="form-control" placeholder="Enter password" id="password" formControlName="Password" name="password">
-                                    <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
-                                        <div *ngIf="f.Password.errors.required" else wrong>Password is required</div>
-                                        <div *ngIf="f.Password.errors.minlength">Password must be at least 4 characters</div>
-                                    </div>
-                                </div>
-                                <div class="form-group col-12 mb-3">
-                                    <button type="submit" class="btn btn-success" (click)="Login()">LOGIN</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
 
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="">
+            <div class="card">
+                <div class="d-flex justify-content-center">
+                    <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+                        <div>
+                            <div class="form-group col-12 pt-3 mb-3">
+                                <label for="username" class="fw-bold pb-3">Username / Email </label>
+                                <span style="color: red;"> *</span>
+                                <input type="text" class="form-control w-100" placeholder="Enter email / username"
+                                       id="username" name="userName" [(ngModel)]="source.userName">
+                            </div>
+                            <div class="form-group col-12 mb-3">
+                                <label for="password" class="fw-bold pb-3">Password</label>
+                                <span style="color: red;"> *</span>
+                                <input type="password" class="form-control w-100" placeholder="Enter password"
+                                       id="password" name="password" [(ngModel)]="source.password">
+                            </div>
+                            <div class="text-center pb-3">
+                                <button type="submit" class="btn btn-outline-success">LOGIN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
