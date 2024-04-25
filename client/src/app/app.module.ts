@@ -43,6 +43,8 @@ import { FacultyModule } from './faculty/faculty.module';
 import { StudentRoutingModule } from './student/student-routing.module';
 import { ParentRoutingModule } from './parent/parent-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
+import { FacultyRoutingModule } from './faculty/faculty-routing.module';
+import { SubmitAssignmentComponent } from './submit-assignment/submit-assignment.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     SuperSecretComponent,
     AccountComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    SubmitAssignmentComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +84,7 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     BrowserAnimationsModule,
     StudentRoutingModule,
     ParentRoutingModule,
+    FacultyRoutingModule,
     AdminRoutingModule,
     AppRoutingModule,
   ],

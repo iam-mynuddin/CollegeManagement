@@ -1,6 +1,7 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -31,7 +32,7 @@ namespace CollegeManagement.Server.Controllers
         [Route("getassignments")]
         public IActionResult GetAssignments()
         {
-            var objList = _dbContext.Assignments.ToList();
+            var objList = _dbContext.Assignments.Include(u=>u.Student).Include(u=>u.Course).Include(u=>u.Subject).ToList();
             return Ok(objList);
         }
         [HttpGet]

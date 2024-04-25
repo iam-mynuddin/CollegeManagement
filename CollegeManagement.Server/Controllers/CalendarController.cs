@@ -1,6 +1,5 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
-using CollegeManagement.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CollegeManagement.Server.Controllers
@@ -16,14 +15,9 @@ namespace CollegeManagement.Server.Controllers
         [HttpGet]
         public IActionResult GetCalendarList()
         {
-            var entry = _dbContext.Calendars.ToList();
+            var objList = _dbContext.Calendars.ToList();
 
-            List<CalendarDto> dto = new List<CalendarDto>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new CalendarDto { DateOfEdit = entries.DateOfEdit, Reason = entries.Reason, Status = entries.Status });
-            }
-            return Ok(dto);
+            return Ok(objList);
         }
         [HttpPost("addcalendar")]
         public IActionResult AddCalendar(Calendar obj)

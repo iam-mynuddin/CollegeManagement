@@ -1,0 +1,69 @@
+﻿
+INSERT INTO Users
+Values ('admin','admin123','adminuser@example.com',	'John','Smith','Admin')
+
+
+Insert Into Students(StudentDepartment,StudentYear,MailId,MobileNumber,Address,FullName)
+Values
+('EEE','1','Bob@gmail.com','+01','HSR','Bob Frank')
+
+Insert Into Parents (Address,MobileNumber,MailId,FullName)
+Values ('HSR','+09','Bobfather@gmail.com','Bob Franks Father')
+
+Insert Into Faculties
+Values('Bobteachermail@gmail.com','+08','EEE',null,'HSR','Bob Franks Teacher')
+
+
+Insert Into Users (UserName,Password,Email,FirstName,LastName,UserType)
+
+Select 'parentbob','pass123','Bobfather@gmail.com','Bob','Parent','Parent'
+Union
+Select 'teacherbob','pass123','Bobteachermail@gmail.com','Bob','Teacher','Faculty'
+Union
+Select 'bob','pass123','Bob@gmail.com','Bob','Me','Student'
+
+
+Insert Into Attendances 
+values(GETDATE(),1,4,1)
+
+
+Insert Into Courses
+Values('Basic Electricals',4,1)
+
+INSert into Assignments
+Values ('Explain Ohms Law',null,1,4)
+
+Insert Into Calendars(Message,DateOfEdit,Status,Reason)
+Values('Conducting mock fire drill',GETDATE(),'Completed','Knowledge Enlightment')
+
+
+Insert Into Calendars(Message,TargetDate,Status,Reason)
+Values('Conducting mock fire drill',GETDATE(),'Completed','Knowledge Enlightment')
+
+
+Insert into FeeDetails (Amount,FeeName,DueDate,PaymentDate,HasPaid,StudentId)
+Values(2000,'Exam fee',GETDATE(),null,1,4)
+
+Insert Into IssueReports Values('Broken chair in the auditorium',0,17)
+
+Insert Into LeaveDetails Values
+('Not feeling well',GetDate(),1,16)
+
+Insert Into Courses 
+Select value From string_split('ECE,MEC,CSE,CIV',',')
+
+Insert Into Subjects
+Values('Circuit Theory',1)
+Insert Into Subjects
+Values('Electronics',1)
+Insert Into Subjects
+Values('Electrical Machines',1)
+Insert Into Subjects
+Values('Power Systems',1)
+Insert Into Subjects
+Values('Control Systems',1)
+
+
+Update Assignments
+set TargetDate=GetDate(),
+SubjectId=1

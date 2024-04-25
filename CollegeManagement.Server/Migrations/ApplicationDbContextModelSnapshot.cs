@@ -40,14 +40,22 @@ namespace CollegeManagement.Server.Migrations
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("SubmissionTime")
+                    b.Property<int?>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("SubmissionTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateOnly?>("TargetDate")
+                        .HasColumnType("date");
 
                     b.HasKey("AssignmentId");
 
                     b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("Assignments");
                 });
@@ -64,16 +72,25 @@ namespace CollegeManagement.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CourseCode")
+                    b.Property<int?>("CourseId")
                         .HasColumnType("int");
 
                     b.Property<int?>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubjectId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SubmissionDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("SubmissionId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentId");
+
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("AssignmentSubmissions");
                 });
@@ -100,6 +117,10 @@ namespace CollegeManagement.Server.Migrations
 
                     b.HasKey("AttendanceId");
 
+                    b.HasIndex("FacultyId");
+
+                    b.HasIndex("StudentId");
+
                     b.ToTable("Attendances");
                 });
 
@@ -110,9 +131,6 @@ namespace CollegeManagement.Server.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CalendarId"));
-
-                    b.Property<DateTime>("DateOfEdit")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -125,6 +143,9 @@ namespace CollegeManagement.Server.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("TargetDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("CalendarId");
 
@@ -143,12 +164,6 @@ namespace CollegeManagement.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FacultyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
-
                     b.HasKey("CourseId");
 
                     b.ToTable("Courses");
@@ -162,14 +177,18 @@ namespace CollegeManagement.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FacultyId"));
 
-                    b.Property<string>("FacultyAddress")
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacultyDepartment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FacultyDoj")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FacultyMail")
+                    b.Property<string>("MailId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -186,7 +205,7 @@ namespace CollegeManagement.Server.Migrations
                     b.ToTable("Faculties");
                 });
 
-            modelBuilder.Entity("CollegeManagement.Models.FacultyCourse", b =>
+            modelBuilder.Entity("CollegeManagement.Models.FacultySubjects", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -194,23 +213,19 @@ namespace CollegeManagement.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourseId")
+                    b.Property<int?>("FacultyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CourseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("FacultyId")
+                    b.Property<int?>("SubjectId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
-
                     b.HasIndex("FacultyId");
 
-                    b.ToTable("FacultyCourses");
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("FacultySubjects");
                 });
 
             modelBuilder.Entity("CollegeManagement.Models.FeeDetail", b =>
@@ -234,7 +249,7 @@ namespace CollegeManagement.Server.Migrations
                     b.Property<bool>("HasPaid")
                         .HasColumnType("bit");
 
-                    b.Property<DateOnly>("PaymentDate")
+                    b.Property<DateOnly?>("PaymentDate")
                         .HasColumnType("date");
 
                     b.Property<int?>("StudentId")
@@ -323,6 +338,28 @@ namespace CollegeManagement.Server.Migrations
                     b.ToTable("HomePageDetails");
                 });
 
+            modelBuilder.Entity("CollegeManagement.Models.Models.Subject", b =>
+                {
+                    b.Property<int>("SubjectId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubjectId"));
+
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubjectName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubjectId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Subjects");
+                });
+
             modelBuilder.Entity("CollegeManagement.Models.Parent", b =>
                 {
                     b.Property<int>("ParentId")
@@ -331,10 +368,18 @@ namespace CollegeManagement.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ParentId"));
 
-                    b.Property<string>("MobileNumber")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ParentAddress")
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobileNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
@@ -358,7 +403,7 @@ namespace CollegeManagement.Server.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CourseName")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -370,6 +415,10 @@ namespace CollegeManagement.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StudentDepartment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentYear")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -391,14 +440,15 @@ namespace CollegeManagement.Server.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CourseName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CourseId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
 
@@ -452,7 +502,49 @@ namespace CollegeManagement.Server.Migrations
                         .WithMany()
                         .HasForeignKey("StudentId");
 
+                    b.HasOne("CollegeManagement.Models.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId");
+
                     b.Navigation("Course");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("CollegeManagement.Models.AssignmentSubmission", b =>
+                {
+                    b.HasOne("CollegeManagement.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("CollegeManagement.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.HasOne("CollegeManagement.Models.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("CollegeManagement.Models.Attendance", b =>
+                {
+                    b.HasOne("CollegeManagement.Models.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId");
+
+                    b.HasOne("CollegeManagement.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("Faculty");
 
                     b.Navigation("Student");
                 });
@@ -466,21 +558,19 @@ namespace CollegeManagement.Server.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CollegeManagement.Models.FacultyCourse", b =>
+            modelBuilder.Entity("CollegeManagement.Models.FacultySubjects", b =>
                 {
-                    b.HasOne("CollegeManagement.Models.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CollegeManagement.Models.Faculty", "Faculty")
                         .WithMany()
                         .HasForeignKey("FacultyId");
 
-                    b.Navigation("Course");
+                    b.HasOne("CollegeManagement.Models.Models.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId");
 
                     b.Navigation("Faculty");
+
+                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("CollegeManagement.Models.FeeDetail", b =>
@@ -512,6 +602,15 @@ namespace CollegeManagement.Server.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("CollegeManagement.Models.Models.Subject", b =>
+                {
+                    b.HasOne("CollegeManagement.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("CollegeManagement.Models.Parent", b =>
                 {
                     b.HasOne("CollegeManagement.Models.User", "User")
@@ -532,9 +631,15 @@ namespace CollegeManagement.Server.Migrations
 
             modelBuilder.Entity("CollegeManagement.Models.StudentCourse", b =>
                 {
+                    b.HasOne("CollegeManagement.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
                     b.HasOne("CollegeManagement.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
+
+                    b.Navigation("Course");
 
                     b.Navigation("Student");
                 });

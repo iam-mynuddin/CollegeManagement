@@ -1,7 +1,8 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -16,14 +17,8 @@ namespace CollegeManagement.Server.Controllers
         [HttpGet("getassignmentsubmissions")]
         public IActionResult GetSubmissions()
         {
-            var entry = _dbContext.AssignmentSubmissions.ToList();
-
-            List<AssignmentSubmission> dto = new List<AssignmentSubmission>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new AssignmentSubmission { SubmissionId = entries.SubmissionId, SubmissionDate = entries.SubmissionDate, StudentId = entries.StudentId, CourseCode = entries.CourseCode });
-            }
-            return Ok(dto);
+            var objList = _dbContext.AssignmentSubmissions.ToList();
+            return Ok(objList);
 
         }
         [HttpPost("submitassignment")]

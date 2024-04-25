@@ -33,7 +33,6 @@ namespace CollegeManagement.Server.Controllers
             {
                 return BadRequest("Failed to add data");
             }
-
         }
         [HttpGet]
         [Route("getissuebyid/{userId}")]
@@ -45,7 +44,6 @@ namespace CollegeManagement.Server.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
                 var res = _dbContext.IssueReports.Select(x => x.UserId == userId);
-
                 if (res != null)
                 {
                     return Ok(res);

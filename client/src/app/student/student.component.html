@@ -40,6 +40,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" [routerLink]="['viewassignment']">View Assignment</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['submitassignment']">Submit Assignment</a></li>
                     </ul>
                 </div>
             </td>
@@ -50,7 +51,8 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" [routerLink]="['leaverequest']">Request Leave</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['viewleave']">View Leave Request</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['leavehistory']">View Leave History</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['viewleave']">View Leave Requests</a></li>
                     </ul>
                 </div>
             </td>
@@ -75,4 +77,6 @@
             </td>
     </table>
 </nav>
-<router-outlet></router-outlet>
+<div class="container-fluid mt-4 mb-4">
+    <router-outlet></router-outlet>
+</div>

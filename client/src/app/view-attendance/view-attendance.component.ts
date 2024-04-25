@@ -8,23 +8,22 @@ import { Attendance } from '../_models/attendance';
   styleUrls: ['./view-attendance.component.css']
 })
 export class ViewAttendanceComponent implements OnInit {
-  
-  
-  attendances: Attendance[] = [];
 
+  result: any;
+  pageUser = 'all students';
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
    
-    this.http.get('https://localhost:7141/api/attendance/getattendancelist').subscribe(
-      response=>{
-        this.attendances=response as Attendance[];
-
-      },
-      error=>{
-        alert('error fetching data');
-
-      });
+    this.http.get('https://localhost:7141/api/attendance/getattendancelist').subscribe({
+      next:response=>{
+        this.result = response;
+    },
+      error :error => {
+        alert('Error! Check console!');
+        console.log(error);
+      }
+    });
   }
 
 }

@@ -6,15 +6,15 @@
                         <form [formGroup]='loginForm' >
                             <div>
                                 <div class="form-group col-12 mb-3">
-                                    <label for="username" style="padding-bottom: 10px;">Username</label><span style="color: red;">*</span>
-                                    <input type="text" class="form-control w-100" placeholder="Enter your username" id="username" formControlName="UserName">
+                                    <label for="username" style="padding-bottom: 10px;">Username / Email </label><span style="color: red;"> *</span>
+                                    <input type="text" class="form-control w-100" placeholder="Enter email / username" id="username" formControlName="UserName">
                                     <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
                                         <div *ngIf="f.UserName.errors.required">Username is required</div>
                                     </div>
                                 </div>
                                 <div class="form-group col-12 mb-3">
-                                    <label for="password" style="padding-bottom: 10px;">Password</label><span style="color: red;">*</span>
-                                    <input type="password" class="form-control" placeholder="Enter your password" id="password" formControlName="Password" name="password">
+                                    <label for="password" style="padding-bottom: 10px;">Password</label><span style="color: red;"> *</span>
+                                    <input type="password" class="form-control" placeholder="Enter password" id="password" formControlName="Password" name="password">
                                     <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
                                         <div *ngIf="f.Password.errors.required" else wrong>Password is required</div>
                                         <div *ngIf="f.Password.errors.minlength">Password must be at least 4 characters</div>

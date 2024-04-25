@@ -1,18 +1,24 @@
-<h1>FEE DETAILS</h1>
-<div class="mt-4 mb-4">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Student Id</th>
-                <th>Amount</th>
-                <th>Last date for payment</th>             
-            </tr>
-            <tr *ngFor="let f of feedetails">
-              <th>{{f.studentId}}</th>
-              <th>{{f.amount}} INR</th>
-              <th>{{formatDate(f.dateOfPayment.toString())}}</th>             
-            </tr>
-        </thead>
-    </table>
-</div>
+<h5 class="text-primary m-3">Fee details for {{[pageUser]}}</h5>
 
+
+<table class="table table-bordered table-striped myTableStyle">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Fee</th>
+            <th>Amount</th>
+            <th>Last date for payment</th>
+            <th>Payment Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let obj of result">
+            <td>{{obj.student.fullName}}</td>
+            <td>{{obj.feeName}}</td>
+            <td>{{obj.amount}} INR</td>
+            <td>{{formatDate(obj.dueDate.toString())}}</td>
+            <td *ngIf="obj.hasPaid">{{obj.paymentDate}}</td>
+            <td *ngIf="!obj.hasPaid">Not paid yet</td>
+        </tr>
+    </tbody>
+</table>

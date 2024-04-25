@@ -9,21 +9,24 @@ import { Issue } from '../_models/issue';
 })
 export class ViewIssueComponent implements OnInit {
 
-  //issues: Issue[] = [];
-  issues: any;
+  pageUser = 'all users';
+  result :any;
 
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
    
-    this.http.get('https://localhost:7141/api/issue/getissuereports').subscribe(
-      response=>{
-        this.issues = response as Issue[];
-        console.log(this.issues.toString());
+    this.http.get('https://localhost:7141/api/issue/getissuereports').subscribe({
+      next: response => {
+        this.result = response;
       },
-      error=>{
-        alert('Error fetching data');
-      });
-  }
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
+    });
+    }
+      
+    
 
 }

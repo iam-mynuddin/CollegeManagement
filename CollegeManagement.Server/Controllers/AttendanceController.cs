@@ -1,6 +1,7 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -15,14 +16,8 @@ namespace CollegeManagement.Server.Controllers
         [HttpGet]
         public IActionResult GetAttendance()
         {
-            var entry = _dbContext.Attendances.ToList();
-
-            List<Attendance> dto = new List<Attendance>();
-            foreach (var entries in entry)
-            {
-                dto.Add(new Attendance { AttendanceDate = entries.AttendanceDate, StudentId = entries.StudentId, FacultyId = entries.FacultyId, IsPresent = entries.IsPresent });
-            }
-            return Ok(dto);
+            var objList = _dbContext.Attendances.Include(u=>u.Student).Include(u=>u.Faculty);
+            return Ok(objList);
         }
         [Route("addattendance")]
         [HttpPost]

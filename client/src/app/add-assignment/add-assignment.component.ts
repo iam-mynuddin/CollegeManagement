@@ -16,7 +16,7 @@ constructor(private http:HttpClient,private fb :FormBuilder) {
   this.assignment=this.fb.group({
     AssignmentId:['',[Validators.required]],
     StudentId:['',[Validators.required]],
-    CourseCode:['',[Validators.required]],
+    SubjectCode:['',[Validators.required]],
     SubmissionTime:['',[Validators.required]],
     Question:['',[Validators.required]]
   
@@ -30,7 +30,7 @@ addassignment(){
   const ass={
     AssignmentId:this.assignment.get("AssignmentId")?.value,
     StudentId:this.assignment.get("StudentId")?.value,
-    CourseCode:this.assignment.get("CourseCode")?.value,
+    SubjectCode:this.assignment.get("SubjectCode")?.value,
     SubmissionTime:this.assignment.get("SubmissionTime")?.value,
     Question:this.assignment.get("Question")?.value
   }

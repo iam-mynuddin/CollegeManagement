@@ -15,10 +15,10 @@ namespace CollegeManagement.Models
         public DateOnly AttendanceDate { get; set; }
         public bool IsPresent { get; set; }
         public int? StudentId { get; set; }
-        //[ForeignKey("StudentId")]
-        //public Student? Student { get; set; }
+        [ForeignKey("StudentId")]
+        public Student? Student { get; set; }
         public int? FacultyId { get; set; }
-        //[ForeignKey("FacultyId")]
-        //public Faculty? Faculty { get; set; }
+        [ForeignKey("FacultyId")]
+        public Faculty? Faculty { get; set; }
     }
 }

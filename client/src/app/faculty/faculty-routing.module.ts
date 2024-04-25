@@ -12,6 +12,9 @@ import { LeaveRequestComponent } from '../leave-request/leave-request.component'
 import { FacultyComponent } from './faculty.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { AccountComponent } from '../account/account.component';
+import { AddAttendanceComponent } from '../add-attendance/add-attendance.component';
+import { AddAssignmentComponent } from '../add-assignment/add-assignment.component';
+import { AddIssueComponent } from '../add-issue/add-issue.component';
 
 
 const routes: Routes = [
@@ -25,7 +28,10 @@ const routes: Routes = [
       { path: 'viewleave', component: ViewLeaveComponent },
       { path: 'leaverequest', component: LeaveRequestComponent },
       { path: 'leavehistory', component: LeaveHistoryComponent },
-      {path:'account',component:AccountComponent},
+      { path: 'addattendance', component: AddAttendanceComponent },
+      { path: 'addassignment', component: AddAssignmentComponent },
+      { path: 'addissue', component: AddIssueComponent },
+      { path: 'account',component:AccountComponent},
       { path: '',  component: DashboardComponent }
     ]
   },
@@ -37,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class facultyRoutingModule { }
+export class FacultyRoutingModule { }

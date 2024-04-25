@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 namespace CollegeManagement.Server.Controllers
 {
 	[ApiController]

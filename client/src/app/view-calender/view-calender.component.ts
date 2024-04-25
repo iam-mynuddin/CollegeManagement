@@ -9,22 +9,21 @@ import { Calendar } from '../_models/calender';
 })
 export class ViewCalenderComponent implements OnInit {
 
-
-  calenders: Calendar[] = [];
+  result: any;
+  pageUser = 'all students';
 
   constructor(private http:HttpClient) { }
 
-  ngOnInit(): void {
-   
-    this.http.get('https://localhost:7141/api/calendar/getcalendarlist').subscribe(
-      response=>{
-        this.calenders=response as Calendar[];
-
+  ngOnInit(): void {   
+    this.http.get('https://localhost:7141/api/calendar/getcalendarlist').subscribe({
+      next: response => {
+        this.result = response;
       },
-      error=>{
-        alert('error fetching data');
-
-      });
+      error: error => {
+        alert('Error! check console!')
+        console.log(error);
+      }
+    });
   }
 
 }

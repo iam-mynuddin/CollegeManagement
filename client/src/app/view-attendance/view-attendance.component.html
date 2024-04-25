@@ -1,20 +1,27 @@
-<div class="col-md-8 mt-4 mb-4">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-             
-                <th>Faculty Id</th>
-                <th>Student Id</th>
-                <th>Date</th>
-                <th>Present/Absent</th>
-            </tr>
-            <tr *ngFor="let a of attendances">
-              
-              <th>{{a.FacultyId}}</th>
-              <th>{{a.StudentId}}</th>
-              <th>{{a.AttendanceDate}}</th>
-              <th>{{a.IsPresent}}</th>
-            </tr>
-        </thead>
-    </table>
-</div>
+
+<h5 class="text-primary m-3">Attendance of {{pageUser}}</h5>
+<table class="table table-bordered table-striped myTableStyle">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Attendance</th>
+            <th>Register by</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let obj of result" class="bg-success">
+            <td>{{obj.student.fullName}}</td>
+            <td>{{obj.attendanceDate}}</td>
+            <td *ngIf="obj.isPresent; else absent">
+                Present
+            </td>
+            <ng-template #absent>
+                <td>
+                    Absent
+                </td>
+            </ng-template>
+            <td>{{obj.faculty.fullName}}</td>
+        </tr>
+    </tbody>
+</table>

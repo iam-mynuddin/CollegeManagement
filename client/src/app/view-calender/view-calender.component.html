@@ -1,19 +1,22 @@
-<div class="col-md-8 mt-4 mb-4">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-          
-          
-                <th>Date</th>
-                <th>Status</th>
-                <th>Reason</th>
-            </tr>
-            <tr *ngFor="let c of calenders">
-             
-              <th>{{c.DateOfEdit}}</th>
-              <th>{{c.Status}}</th>
-              <th>{{c.Reason}}</th>
-            </tr>
-        </thead>
-    </table>
-</div>
+<h5 class="text-primary m-3">Calendar alerts for {{pageUser}} </h5>
+
+<table class="table table-bordered table-striped myTableStyle">
+    <thead>
+        <tr>
+            <th>Event No</th>
+            <th>Event</th>
+            <th>Event Date</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let obj of result" class="bg-success">
+            <td>{{obj.calendarId}}</td>
+            <td>{{obj.message}}</td>
+            <td>{{obj.targetDate}}</td>
+            <td>{{obj.reason}}</td>            
+            <td>{{obj.status}}</td>
+        </tr>
+    </tbody>
+</table>

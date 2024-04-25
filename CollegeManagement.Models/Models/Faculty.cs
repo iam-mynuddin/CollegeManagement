@@ -10,16 +10,15 @@ namespace CollegeManagement.Models
 {
     public class Faculty
     {
-        [Key]
-        public int FacultyId { get; set; }
-        public string FacultyMail { get; set; }
+		[Key]
+		public int FacultyId { get; set; }
+		public string FacultyDepartment { get; set; }
+		public string MailId { get; set; }
 		public string? MobileNumber { get; set; }
-		public string FacultyAddress { get; set; }
-        public DateTime FacultyDoj { get; set; }
-        public int? UserId { get; set; }
-        [ForeignKey("UserId")]
-        public User? User { get; set; }
-
-
-    }
+		public string? Address { get; set; }
+		public int? UserId { get; set; }
+		[ForeignKey("UserId")]
+		public User? User { get; set; }
+		public string FullName { get; set; }
+	}
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { facultyRoutingModule } from './faculty-routing.module';
+import { FacultyRoutingModule } from './faculty-routing.module';
 import { RouterModule } from '@angular/router';
 import { FacultyComponent } from './faculty.component';
 
@@ -11,7 +11,7 @@ import { FacultyComponent } from './faculty.component';
   imports: [
     CommonModule,
     RouterModule,
-    facultyRoutingModule
+    FacultyRoutingModule
   ],
 })
 export class FacultyModule { }

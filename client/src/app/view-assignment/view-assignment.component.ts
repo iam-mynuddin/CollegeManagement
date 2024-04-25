@@ -9,21 +9,22 @@ import { Assignment } from '../_models/assignment';
 })
 export class ViewAssignmentComponent implements OnInit {
   
-  assignments: Assignment[] = [];
+  result: any;
+  pageUser = 'all students';
+
 
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-   
-    this.http.get('https://localhost:7141/api/assignment/getassignments').subscribe(
-      response=>{
-        this.assignments=response as Assignment[];
 
+    this.http.get('https://localhost:7141/api/assignment/getassignments').subscribe({
+      next: response => {
+        this.result = response;
       },
-      error=>{
-        alert('error fetching data');
-
-      });
+      error: error => {
+        alert('Error! Check console!');
+        console.log(error);
+      }
+    });
   }
-
 }

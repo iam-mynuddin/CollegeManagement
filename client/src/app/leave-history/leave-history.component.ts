@@ -9,22 +9,23 @@ import { Leave } from '../_models/leave';
 })
 export class LeaveHistoryComponent implements OnInit {
 
-  leaves: Leave[] = [];
+  pageUser = 'all users';
+  result: any;
 
-  constructor(private http:HttpClient) { }
-  
+  constructor(private http: HttpClient) { }
+
 
   ngOnInit(): void {
-   
-    this.http.get('https://localhost:7141/api/leavedetails/getattendance').subscribe(
-      response=>{
-        this.leaves=response as Leave[];
 
+    this.http.get('https://localhost:7141/api/leavedetails/getleavehistory').subscribe({
+      next: response => {
+        this.result = response;
       },
-      error=>{
-        alert('error fetching data');
-
-      });
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
+    });
   }
 
 }

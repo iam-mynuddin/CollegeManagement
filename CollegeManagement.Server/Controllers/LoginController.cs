@@ -17,11 +17,12 @@ namespace CollegeManagement.Server.Controllers
         [HttpPost("login")]
         public IActionResult Login(UserDto user)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            var res = _dbContext.Users.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
+            if (user==null)
+                return BadRequest("Bad request");
+            if (!_dbContext.Users.Any(x => (x.UserName == user.UserName || x.Email == user.MailId))) return Unauthorized("Invalid username");
+            var res = _dbContext.Users.FirstOrDefault(x => (x.UserName == user.UserName ||x.Email==user.MailId) && x.Password == user.Password);
             if (res == null)
-                return BadRequest("Invalid Username/Password");
+                return Unauthorized("Invalid password");
             return Ok(res);
         }
         [HttpGet("supersecret")]

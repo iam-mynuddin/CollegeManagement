@@ -16,7 +16,7 @@ namespace CollegeManagement.DTOs
 
         public DateTime SubmissionTime { get; set; }
 
-        public int CourseCode { get; set; }
+        public int SubjectCode { get; set; }
        
         public int StudentId { get; set; }
        

@@ -9,14 +9,15 @@ import { FeeDetail } from '../_models/feeDetails';
 })
 export class ViewFeeDetailsComponent implements OnInit {
   
-  feedetails: FeeDetail[] = [];
+  result: any;
+  pageUser='all students';
 
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {   
     this.http.get('https://localhost:7141/api/fee/getfeedetails').subscribe({
       next: response => {
-        this.feedetails = response as FeeDetail[];
+        this.result = response
       },
       error: error => {
         alert('error fetching data');

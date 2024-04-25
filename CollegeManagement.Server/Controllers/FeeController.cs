@@ -1,6 +1,7 @@
 ﻿using CollegeManagement.Data;
 using CollegeManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -17,7 +18,7 @@ namespace CollegeManagement.Server.Controllers
         [Route("getfeedetails")]
         public IActionResult GetFeeDetails()
         {
-            var objList = _dbContext.FeeDetails.ToList();
+            var objList = _dbContext.FeeDetails.Include(u=>u.Student).ToList();
             return Ok(objList);
 
         }
