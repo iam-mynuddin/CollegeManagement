@@ -33,10 +33,11 @@ export class UserloginComponent implements OnInit {
             this.router.navigate(['/faculty'])
           }
           else if (res.userType == 'Parent') {
-            this.router.navigate(['/parent'])
+            this.router.navigate(['/parent']);
           }
           else
-            alert('Please check you login details');
+            alert("Please update your account details!")
+            this.router.navigate(['']);
         }
       },
       error: (error: any) => {
