@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GetDataService } from '../_services/get-data.service';
 import { Assignment } from '../_models/models';
 
@@ -10,12 +9,12 @@ import { Assignment } from '../_models/models';
   styleUrls: ['./add-assignment.component.css']
 })
 export class AddAssignmentComponent implements OnInit {
-  source: any = {};
   allFaculties: any;
   allStudents: any;
   allUsers: any;
   allCourses: any;
   allSubjects: any;
+  source: any = {  };
   constructor(private http: HttpClient, private getData: GetDataService) {
   }
 
@@ -32,6 +31,7 @@ export class AddAssignmentComponent implements OnInit {
         alert('Assignmnet alloted!');
       },
       error: error => {
+        console.log(this.source);
         alert('Error! check console!');
         console.log(error);
       }

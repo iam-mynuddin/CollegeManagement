@@ -54,7 +54,7 @@ namespace CollegeManagement.Server.Controllers
 				targetObj.StudentYear = obj.StudentYear;
 				targetObj.StudentDepartment = obj.Department;
 				targetObj.StudentId=(int)_dbContext.Students.AsNoTracking().FirstOrDefault(u=>u.UserId==obj.UserId).StudentId;
-				if(targetObj.StudentId==null || targetObj.StudentId<1)
+				if(targetObj.StudentId<1)
 				{
 					_dbContext.Students.Add(targetObj);
 				}

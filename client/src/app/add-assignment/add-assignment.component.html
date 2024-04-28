@@ -9,6 +9,7 @@
                     <option *ngFor="let obj of allFaculties" [value]="obj.facultyId">{{obj.fullName}}</option>
                 </select>
             </div>
+            <input type="hidden" name="status" id="status" value="Alloted" [(ngModel)]="source.status" />
             <div class="form-group mb-3">
                 <label for="studentId" class="fw-bold mb-1">Student name:</label>
                 <select class="form-select" id="studentId" name="studentId" [(ngModel)]="source.studentId">

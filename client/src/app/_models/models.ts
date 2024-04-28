@@ -2,6 +2,7 @@
 export interface Assignment {
   assignmentId: number | null;
   question: string | null;
+  status: string | null;
   allotedDate: string  | null;
   targetDate: Date  | null;
   courseId: number  | null;

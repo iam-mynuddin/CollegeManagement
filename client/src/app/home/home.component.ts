@@ -9,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   homeDetails: any;
   scrollingText: any;
+  slides = [
+    { imageUrl: 'https://via.placeholder.com/800x500' },
+    { imageUrl: 'https://via.placeholder.com/800x200' },
+    { imageUrl: 'https://via.placeholder.com/800x600' }
+  ];
+
+  private intervalId: any;
+
+
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
     this.getHomeDetails();
+      this.intervalId = setInterval(() => {
+        $('#carouselExampleIndicators').carousel('next');
+      }, 2000); // Adjust the interval as needed (in milliseconds)
+    
   }
 
   getHomeDetails() {

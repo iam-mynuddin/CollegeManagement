@@ -19,7 +19,8 @@ namespace CollegeManagement.Server.Controllers
         {
             if (user==null)
                 return BadRequest("Bad request");
-            if (!_dbContext.Users.Any(x => (x.UserName == user.UserName || x.Email == user.MailId))) return Unauthorized("Invalid username");
+            if (!_dbContext.Users.Any(x => (x.UserName.ToLower() == user.UserName.ToLower() || x.Email.ToLower() == user.UserName.ToLower()))) 
+                return Unauthorized("Invalid username");
             var res = _dbContext.Users.FirstOrDefault(x => (x.UserName == user.UserName ||x.Email==user.MailId) && x.Password == user.Password);
             if (res == null)
                 return Unauthorized("Invalid password");

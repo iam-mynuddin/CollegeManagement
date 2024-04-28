@@ -59,35 +59,35 @@
                     <div class="col-12">
                         <div class="card-deck">
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Computer Science Engineering</h5>
                                     <p class="card-text">Computer Science Engineering focuses on the design and development of software applications and systems. It covers various programming languages, algorithms, data structures, and computer networks.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Electrical Engineering</h5>
                                     <p class="card-text">Electrical Engineering deals with the study and application of electricity, electronics, and electromagnetism. It includes subjects like circuit theory, power systems, control systems, and electronics.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Mechanical Engineering</h5>
                                     <p class="card-text">Mechanical Engineering focuses on the design, analysis, and manufacturing of mechanical systems. It covers topics such as mechanics, thermodynamics, materials science, and manufacturing processes.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Civil Engineering</h5>
                                     <p class="card-text">Civil Engineering deals with the design, construction, and maintenance of infrastructure projects. It includes disciplines such as structural engineering, transportation engineering, and environmental engineering.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Chemical Engineering</h5>
                                     <p class="card-text">Chemical Engineering involves the design and operation of processes to produce, transform, and transport materials. It includes subjects such as thermodynamics, chemical kinetics, and process design.</p>
@@ -104,35 +104,35 @@
                     <div class="col-12">
                         <div class="card-deck">
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Science Fair</h5>
                                     <p class="card-text">Our college organizes an annual science fair where students showcase their innovative projects and experiments. It provides a platform for students to explore various scientific concepts and present their findings to a wider audience.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Sports Day</h5>
                                     <p class="card-text">Sports Day is a much-awaited event at our college, where students participate in various sports and games competitions. It promotes teamwork, sportsmanship, and a healthy lifestyle among students.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Community Service</h5>
                                     <p class="card-text">We believe in giving back to the community, and our college regularly conducts welfare activities such as blood donation drives, tree planting campaigns, and visits to orphanages and old age homes. It instills a sense of social responsibility among students.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Cultural Fest</h5>
                                     <p class="card-text">Our college hosts an annual cultural fest where students showcase their talents in music, dance, drama, and various art forms. It's a vibrant celebration of diversity and creativity, bringing together students from different backgrounds.</p>
                                 </div>
                             </div>
                             <div class="card">
-                                <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                                <img src="https://random-image-pepebigotes.vercel.app/api/random-image" style="height:500px;" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">Career Development Workshops</h5>
                                     <p class="card-text">To prepare students for their future careers, our college conducts regular workshops on resume writing, interview skills, and professional networking. Industry experts and alumni are invited to share their insights and experiences with the students.</p>
@@ -153,3 +153,23 @@
     </div>
 </div>
 
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li *ngFor="let slide of slides; let i = index" [attr.data-target]="'#carouselExampleIndicators'" [attr.data-slide-to]="i" [class.active]="i === 0"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div *ngFor="let slide of slides; let i = index" class="carousel-item" [class.active]="i === 0">
+            <img [src]="slide.imageUrl" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
