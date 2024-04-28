@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FeeDetail } from '../_models/feeDetails';
 
 @Component({
   selector: 'app-view-fee-details',

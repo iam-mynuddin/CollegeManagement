@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Issue } from '../_models/issue';
-
 @Component({
   selector: 'app-view-issue',
   templateUrl: './view-issue.component.html',

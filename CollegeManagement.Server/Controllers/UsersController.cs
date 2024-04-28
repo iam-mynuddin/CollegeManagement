@@ -3,6 +3,8 @@ using CollegeManagement.Models;
 using CollegeManagement.Models.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -15,11 +17,12 @@ namespace CollegeManagement.Server.Controllers
 			_dbContext = dbContext;
 		}
 		[HttpPost("registeruser")]
-		public IActionResult RegisterUser(UserDto obj)
+		public IActionResult RegisterUser(User obj)
 		{
-			if (obj == null) { return BadRequest(); }
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
 			User usObj = new();
-			usObj.Email = obj.MailId;
+			usObj.Email = obj.Email;
 			usObj.FirstName = obj.FirstName;
 			usObj.LastName = obj.LastName;
 			usObj.UserType = obj.UserType;
@@ -30,13 +33,12 @@ namespace CollegeManagement.Server.Controllers
 			_dbContext.SaveChanges();
 			return Ok("User added");
 		}
-
 		[HttpPost("updateuser")]
 		public IActionResult UpdateUser(UserDto obj)
 		{
 			if (obj == null) { return BadRequest(); }
-
-			User usObj = _dbContext.Users.FirstOrDefault(x=>x.UserName==obj.UserName);
+			User usObj = _dbContext.Users.FirstOrDefault(x=>x.UserId==obj.UserId);
+			if (usObj == null) { return BadRequest(); }
 			usObj.Email = obj.MailId;
 			usObj.FirstName = obj.FirstName;
 			usObj.LastName = obj.LastName;
@@ -51,11 +53,13 @@ namespace CollegeManagement.Server.Controllers
 				targetObj.MailId = obj.MailId;
 				targetObj.StudentYear = obj.StudentYear;
 				targetObj.StudentDepartment = obj.Department;
-				if(!_dbContext.Students.Any(u=>u.UserId==obj.UserId)) 
+				targetObj.StudentId=(int)_dbContext.Students.AsNoTracking().FirstOrDefault(u=>u.UserId==obj.UserId).StudentId;
+				if(targetObj.StudentId==null || targetObj.StudentId<1)
+				{
 					_dbContext.Students.Add(targetObj);
+				}
 				else
 				{
-					targetObj.StudentId=(int)_dbContext.Students.FirstOrDefault(u=>u.UserId==obj.UserId).UserId;
 					_dbContext.Students.Update(targetObj);
 				}
 			}
@@ -67,11 +71,11 @@ namespace CollegeManagement.Server.Controllers
 				targetObj.MobileNumber = obj.MobileNumber;
 				targetObj.FullName = obj.FirstName + " " + obj.LastName;
 				targetObj.MailId = obj.MailId;
-				if (!_dbContext.Parents.Any(u => u.UserId == obj.UserId))
+				if (!_dbContext.Parents.AsNoTracking().Any(u => u.UserId == obj.UserId))
 					_dbContext.Parents.Add(targetObj);
 				else
 				{
-					targetObj.ParentId = (int)_dbContext.Students.FirstOrDefault(u => u.UserId == obj.UserId).UserId;
+					targetObj.ParentId = (int)_dbContext.Parents.AsNoTracking().FirstOrDefault(u => u.UserId == obj.UserId).UserId;
 					_dbContext.Parents.Update(targetObj);
 				}
 			}
@@ -84,11 +88,11 @@ namespace CollegeManagement.Server.Controllers
 				targetObj.FullName = obj.FirstName + " " + obj.LastName;
 				targetObj.MailId = obj.MailId;
 				targetObj.FacultyDepartment = obj.Department;
-				if (!_dbContext.Faculties.Any(u => u.UserId == obj.UserId))
+				if (!_dbContext.Faculties.AsNoTracking().Any(u => u.UserId == obj.UserId))
 					_dbContext.Faculties.Add(targetObj);
 				else
 				{
-					targetObj.FacultyId = (int)_dbContext.Faculties.FirstOrDefault(u => u.UserId == obj.UserId).UserId;
+					targetObj.FacultyId = (int)_dbContext.Faculties.AsNoTracking().FirstOrDefault(u => u.UserId == obj.UserId).UserId;
 					_dbContext.Faculties.Update(targetObj);
 				}
 			}
@@ -96,7 +100,7 @@ namespace CollegeManagement.Server.Controllers
 			{
 				_dbContext.SaveChanges();
 			}
-			return Ok("User updated");
+			return Ok(new {message="Successfully updated user"});
 		}
 	}
 }

@@ -15,10 +15,10 @@ namespace CollegeManagement.Models
         [Key]
         public int SubmissionId { get; set; }
         public string? Answer { get; set; }
-        public int? Status { get; set; }
+        public string? Status { get; set; }
         public string? Feedback {  get; set; }
         public bool? Reviewed { get; set; }
-        public DateTime? SubmissionDate { get; set; }
+        public DateTime? SubmissionDate { get; set; } = DateTime.UtcNow;
         public int? AssignmentId { get; set; }
         [ForeignKey("AssignmentId")]
         public Assignment? Assignment { get; set; }

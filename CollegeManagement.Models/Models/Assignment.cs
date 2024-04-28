@@ -13,7 +13,8 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int AssignmentId { get; set; }
-        public required string Question { get; set; }
+        public string Question { get; set; }
+        public string Status { get; set; }
         public DateTime? AllotedDate { get; set; } = DateTime.UtcNow;
         public DateOnly? TargetDate { get; set; }
         public int? CourseId { get; set; }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GetDataService } from '../_services/get-data.service';
+import { Assignment } from '../_models/models';
 
 @Component({
   selector: 'app-add-assignment',
@@ -8,39 +10,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-assignment.component.css']
 })
 export class AddAssignmentComponent implements OnInit {
-  
-  //assignment:any;
-  assignment:any;
-
-constructor(private http:HttpClient,private fb :FormBuilder) {
-  this.assignment=this.fb.group({
-    AssignmentId:['',[Validators.required]],
-    StudentId:['',[Validators.required]],
-    SubjectCode:['',[Validators.required]],
-    SubmissionTime:['',[Validators.required]],
-    Question:['',[Validators.required]]
-  
-  });
- }
-
-ngOnInit(): void {
-}
-
-addassignment(){
-  const ass={
-    AssignmentId:this.assignment.get("AssignmentId")?.value,
-    StudentId:this.assignment.get("StudentId")?.value,
-    SubjectCode:this.assignment.get("SubjectCode")?.value,
-    SubmissionTime:this.assignment.get("SubmissionTime")?.value,
-    Question:this.assignment.get("Question")?.value
+  source: any = {};
+  allFaculties: any;
+  allStudents: any;
+  allUsers: any;
+  allCourses: any;
+  allSubjects: any;
+  constructor(private http: HttpClient, private getData: GetDataService) {
   }
-  this.http.post('https://localhost:7141/api/assignment/uploadassignmentques', ass).subscribe(
-    (data)=>{alert('saved successfully');},
-    (err)=>{console.log(err);
-      alert('Error saving data');
-  });
-      
-  
-}
 
+  ngOnInit(): void {
+    this.getData.getAllFaculty().subscribe(result => { this.allFaculties = result; });
+    this.getData.getAllStudents().subscribe(result => { this.allStudents = result; });
+    this.getData.getAllUsers().subscribe(result => { this.allUsers = result; });
+    this.getData.getAllCourses().subscribe(result => { this.allCourses = result; });
+    this.getData.getAllSubjects().subscribe(result => { this.allSubjects = result; });
+  }
+  submitToServer() {
+    this.http.post('https://localhost:7141/api/assignment/allotassignment',this.source).subscribe({
+      next: response => {
+        alert('Assignmnet alloted!');
+      },
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
+    });
+  }
 }

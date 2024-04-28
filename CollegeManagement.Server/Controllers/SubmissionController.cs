@@ -24,16 +24,20 @@ namespace CollegeManagement.Server.Controllers
         [HttpPost("submitassignment")]
         public IActionResult SubmitAssignment(AssignmentSubmission obj)
         {
-            try
-            {
-                _dbContext.AssignmentSubmissions.Add(obj);
-                return Ok();
-            }
-            catch
-            {
-                return
-                    BadRequest("Failed to add data");
-            }
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+			var assignmentQuestion=_dbContext.Assignments.FirstOrDefault(x => x.AssignmentId == obj.AssignmentId);
+                if (assignmentQuestion != null)
+                {
+                    assignmentQuestion.Status = "Answer submitted";
+                    _dbContext.Assignments.Update(assignmentQuestion);
+                }
+                obj.Status = "Submitted";
+				_dbContext.AssignmentSubmissions.Add(obj);
+				_dbContext.SaveChanges();
+				_dbContext.AssignmentSubmissions.Entry(obj).Reload();
+				return Ok(obj);
+			
         }
     }
 }

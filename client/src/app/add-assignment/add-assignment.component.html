@@ -1,37 +1,49 @@
-<form [formGroup]="assignment">
-    <div class="form-group col-md-4" >
-      <label for="">Assignment Id</label>
-      <input type="number" name="Assignment Id" class="form-control" formControlName="AssignmentId">
-    </div><br>
 
-    <div class="form-group col-md-4">
-      <label for="">Student Id</label>
-      <select name="Status" class="form-control" formControlName="StudentId">
-        <option value="1">1</option>>
-        <option value="2">2</option>
-        <option value="3">3</option>>
-        <option value="4">4</option>>
-        <option value="5">5</option>>
-        <option value="6">6</option>>
-        <option value="7">7</option>>
-      </select>
-    </div><br>
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <form #addAssignmentForm="ngForm" (ngSubmit)="submitToServer()">
+            <div class="form-group mb-3">
+                <label for="facultyId" class="fw-bold mb-1">Your name:</label>
+                <select class="form-select" id="facultyId" name="facultyId" [(ngModel)]="source.facultyId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of allFaculties" [value]="obj.facultyId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="studentId" class="fw-bold mb-1">Student name:</label>
+                <select class="form-select" id="studentId" name="studentId" [(ngModel)]="source.studentId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of allStudents" [value]="obj.studentId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="courseId" class="fw-bold mb-1">Course name:</label>
+                <select class="form-select" id="courseId" name="courseId" [(ngModel)]="source.courseId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of allCourses" [value]="obj.courseId">{{obj.courseName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="subjectId" class="fw-bold mb-1">Subject name:</label>
+                <select class="form-select" id="subjectId" name="subjectId" [(ngModel)]="source.subjectId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of allSubjects" [value]="obj.subjectId">{{obj.subjectName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="questionDesc" class="fw-bold mb-1">Question:</label>
+                <textarea class="form-control" id="questionDesc" name="question" rows="4" [(ngModel)]="source.question">
 
-    <div class="form-group col-md-4">
-      <label for="">Subject Code</label>
-      <input type="number" name="SubjectCode" class="form-control" formControlName="SubjectCode">
-    </div><br>
-    
-    
-    <div class="form-group col-md-4">
-      <label for="">Last Date for Submission</label>
-      <input type="date" name="SubmissionTime" class="form-control" formControlName="SubmissionTime">
-    </div><br>
-
-    <div class="form-group col-md-4" >
-      <label for="">Question</label>
-      <input type="text" name="Question" class="form-control" formControlName="Question">
-    </div><br>
-    
-    <button type="submit" (click)="addassignment()" class="btn btn-primary">add</button>
-    </form>
+                </textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="targetDate" class="fw-bold mb-1">Last date to submit:</label>
+                <input class="form-control" type="date" id="targetDate" name="targetDate"
+                       [(ngModel)]="source.targetDate">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

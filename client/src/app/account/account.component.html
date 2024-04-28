@@ -1,26 +1,70 @@
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center my-5">
         <div class="col-md-6">
             <div class="card p-4 shadow-lg">
-                <h2 class="text-center mb-4">User Registration</h2>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Full Name">
+                <h3 class="text-center mb-4">Update Account</h3>
+                <form #updateAccountForm="ngForm" (ngSubmit)="submitToServer()">
+                    <div class="form-group mb-3">
+                        <label for="userId" class="fw-bold mb-1">Your name:</label>
+                        <select class="form-select" id="userId" name="userId" [(ngModel)]="source.userId" disabled>
+                            <option *ngFor="let obj of allUsers" [value]="obj.userId">{{obj.firstName+' '+obj.lastName}}</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email">
+                    <div class="form-group mb-3">
+                        <label for="userName" class="fw-bold pb-3">User name:</label>
+                        <input type="text" class="form-control" minlength="8" id="userName" name="userName" disabled
+                               [(ngModel)]="source.userName">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
+                    <div class="form-group mb-3">
+                        <label for="userType" class="fw-bold mb-1">User type:</label>
+                        <select class="form-select" id="userType" name="userType" [(ngModel)]="source.userType" disabled>
+                            <option value="Parent">Parent</option>
+                            <option value="Faculty">Faculty</option>
+                            <option value="Student">Student</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirm Password">
+                    <div class="form-group mb-3">
+                        <label for="department" class="fw-bold mb-1">Department:</label>
+                        <select class="form-select" id="department" name="department" [(ngModel)]="source.department">
+                            <option *ngFor="let obj of allCourses" [value]="obj.courseName">{{obj.courseName}}</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    <div class="form-group mb-3" *ngIf="(source.userType=='Student')">
+                        <label for="studentYear" class="fw-bold mb-1">Study year:</label>
+                        <select class="form-select" id="studentYear" name="studentYear" [(ngModel)]="source.studentYear">
+                            <option value="1">1st year</option>
+                            <option value="2">2st year</option>
+                            <option value="3">3st year</option>
+                            <option value="4">4st year</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="firstName" class="fw-bold pb-3">First name:</label>
+                        <input type="text" class="form-control" placeholder="Firstname" id="firstName" name="firstName"
+                               [(ngModel)]="source.firstName">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="lastName" class="fw-bold pb-3">Last name: </label>
+                        <input type="text" class="form-control" placeholder="Lastname" id="lastName" name="lastName" [(ngModel)]="source.lastName">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="mobileNumber" class="fw-bold pb-3">Mobile number: </label>
+                        <input type="text" class="form-control" placeholder="Mobile number" id="mobileNumber" name="mobileNumber" [(ngModel)]="source.mobileNumber">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="mailId" class="fw-bold pb-3">E-mail ID: </label>
+                        <input type="email" class="form-control" placeholder="Mobile number" id="mailId" name="mailId" [(ngModel)]="source.mailId">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="address" class="fw-bold pb-3">Address: </label>
+                        <textarea type="text" rows="2" class="form-control" placeholder="Address" id="address" name="address" [(ngModel)]="source.address">
+                            </textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-primary">Submit</button>
+                    </div>
                 </form>
-                <div class="text-center mt-3">
-                    Already have an account? <a href="#" class="text-muted">Login</a>
-                </div>
             </div>
         </div>
     </div>

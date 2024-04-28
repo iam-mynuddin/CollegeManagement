@@ -25,6 +25,7 @@ import { ViewLeaveComponent } from './view-leave/view-leave.component';
 import { SuperSecretComponent } from './super-secret/super-secret.component';
 import { RegisterComponent } from './register/register.component';
 import { SubmitAssignmentComponent } from './submit-assignment/submit-assignment.component';
+import { AccountComponent } from './account/account.component';
 
 
 
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path:'supersecret',component:SuperSecretComponent},
   {path:'register', component: RegisterComponent },  
   {path:'submitassigment', component: SubmitAssignmentComponent },  
+  {path:'account', component: AccountComponent },  
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

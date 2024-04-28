@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GetDataService } from '../_services/get-data.service';
+import { FeeDetail } from '../_models/models';
 
 @Component({
   selector: 'app-add-fees-details',
@@ -8,33 +10,24 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-fees-details.component.css']
 })
 export class AddFeesDetailsComponent implements OnInit {
-  feesdetail:any;
+  source: any = {};
+  students: any;
 
-  constructor(private http:HttpClient,private fb :FormBuilder) {
-    this.feesdetail=this.fb.group({
-      StudentId:['',[Validators.required]],
-      Amount:['',[Validators.required]],
-      DateOfPayment:['',[Validators.required]]
-    
-    });
-   }
+  constructor(private http: HttpClient, private getData: GetDataService) {
+  }
 
   ngOnInit(): void {
+    this.getData.getAllStudents().subscribe(result => { this.students = result; });
   }
-
-  addfeesdetails(){
-    const fs={
-      StudentId:this.feesdetail.get("StudentId")?.value,
-      Amount:this.feesdetail.get("Amount")?.value,
-      DateOfPayment:this.feesdetail.get("DateOfPayment")?.value
-    }
-    this.http.post('https://localhost:7141/api/fee/uploadfeedetails', fs).subscribe(
-      (data)=>{alert('saved successfully');},
-      (err)=>{console.log(err);
-        alert('Error saving data');
+  submitToServer() {
+    this.http.post('https://localhost:7141/api/fee/addfeedetails', this.source).subscribe({
+      next: response => {
+        alert('Fee details added!');
+      },
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
     });
-        
-    
   }
-
 }

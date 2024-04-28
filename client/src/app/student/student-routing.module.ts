@@ -13,7 +13,6 @@ import { StudentComponent } from './student.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { AccountComponent } from '../account/account.component';
 import { AddIssueComponent } from '../add-issue/add-issue.component';
-import { AddAssignmentComponent } from '../add-assignment/add-assignment.component';
 import { SubmitAssignmentComponent } from '../submit-assignment/submit-assignment.component';
 
 

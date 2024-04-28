@@ -1,15 +1,14 @@
 
 <div class="row justify-content-center mt-5">
     <div class="col-lg-6">
-        <form #raiseIssueForm="ngForm" (ngSubmit)="raiseIssue()">
+        <form #raiseIssueForm="ngForm" (ngSubmit)="submitToServer()">
             <div class="form-group mb-3">
                 <label for="userId" class="fw-bold mb-1">Your name:</label>
                 <select class="form-select" id="userId" name="userId" [(ngModel)]="source.userId">
-                    <option selected>Select an option</option>
+                    <option selected disabled>Select an option</option>
                     <option *ngFor="let obj of allUsers" [value]="obj.userId">{{obj.fullName}}</option>
                 </select>
             </div>
-
             <div class="form-group mb-3">
                 <label for="userDesc" class="fw-bold mb-1">Issue Description:</label>
                 <textarea class="form-control" id="userDesc" name="description" rows="4" [(ngModel)]="source.description"></textarea>

@@ -16,24 +16,18 @@ namespace CollegeManagement.Server.Controllers
         public IActionResult GetCalendarList()
         {
             var objList = _dbContext.Calendars.ToList();
-
             return Ok(objList);
         }
         [HttpPost("addcalendar")]
         public IActionResult AddCalendar(Calendar obj)
         {
-            try
-            {
-                var entry = _dbContext.Calendars.Add(obj);
-                return Ok();
-
-            }
-            catch
-            {
-                return BadRequest("Failed to add data");
-
-            }
-
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+			_dbContext.Calendars.Add(obj);
+                _dbContext.SaveChanges();
+                _dbContext.Calendars.Entry(obj).Reload();
+                return Ok(obj);
+            
         }
     }
 }

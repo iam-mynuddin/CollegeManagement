@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
+using CollegeManagement.Server.Helpers;
 
 namespace CollegeManagement.Server.Controllers
 {
@@ -24,7 +26,7 @@ namespace CollegeManagement.Server.Controllers
         }
         [HttpGet]
         [Route("dashboard")]
-        public IActionResult Dashboard() 
+        public IActionResult GetDashboardDetailsADO() 
         {
             try
             {
@@ -52,5 +54,11 @@ namespace CollegeManagement.Server.Controllers
             }
 
         }
-    }
+		[HttpGet]
+		[Route("dashboardef")]
+		public IActionResult GetDashboardDetailsEF()
+		{
+            return null;
+		}
+	}
 }

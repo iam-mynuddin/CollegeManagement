@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GetDataService } from '../_services/get-data.service';
+import { IssueReport } from '../_models/models';
 
 @Component({
   selector: 'app-add-issue',
@@ -9,7 +10,7 @@ import { GetDataService } from '../_services/get-data.service';
   styleUrls: ['./add-issue.component.css']
 })
 export class AddIssueComponent implements OnInit {
-  source: any = {};
+  source: any = {} ;
   faculties: any;
   allUsers: any;
   constructor(private http:HttpClient,private getData:GetDataService) {
@@ -19,8 +20,7 @@ export class AddIssueComponent implements OnInit {
     this.getData.getAllFaculty().subscribe(result => { this.faculties = result; })
     this.getData.getAllUsers().subscribe(result => { this.allUsers = result; })    
   }
-  raiseIssue() {
-    //console.log(this.source);
+  submitToServer() {
     this.http.post('https://localhost:7141/api/issue/raiseissue', this.source).subscribe({
       next: response => {
         alert('Issue raised!');

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
-import { User } from '../_models/user';
 
 @Component({
   selector: 'app-userlogin',
@@ -35,9 +34,10 @@ export class UserloginComponent implements OnInit {
           else if (res.userType == 'Parent') {
             this.router.navigate(['/parent']);
           }
-          else
+          else {
             alert("Please update your account details!")
             this.router.navigate(['']);
+          }
         }
       },
       error: (error: any) => {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +13,16 @@ namespace CollegeManagement.Models
     {
 		[Key]
 		public int ParentId { get; set; }
-		public string MailId { get; set; }
-		public string? MobileNumber { get; set; }
-		public string? Address { get; set; }
-		public int? UserId { get; set; }
+		[AllowNull]
+		public string? MailId { get; set; }
+		[Required]
+		public string MobileNumber { get; set; }
+		[Required]
+		public string Address { get; set; }
+		public int UserId { get; set; }
 		[ForeignKey("UserId")]
-		public User? User { get; set; }
+		public User User { get; set; }
+		[Required]
 		public string FullName { get; set; }
 
 	}

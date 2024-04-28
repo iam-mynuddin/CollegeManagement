@@ -12,11 +12,17 @@ namespace CollegeManagement.Models
     {
         [Key]
         public int StudentId { get; set; }
+        [Required]
         public string StudentDepartment { get; set; }
-        public string StudentYear { get; set; }
-        public string MailId { get; set; }
-        public string? MobileNumber { get; set; }
-        public string? Address { get; set; }
+		[Required]
+		public string StudentYear { get; set; }
+		[Required]
+		public string MailId { get; set; }
+		[Required]
+		public string MobileNumber { get; set; }
+		[Required]
+		public string Address { get; set; }
+		[Required]
 		public string FullName { get; set; }
         public int? UserId { get; set; }
         [ForeignKey("UserId")]

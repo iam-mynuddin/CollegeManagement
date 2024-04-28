@@ -1,19 +1,36 @@
-<form [formGroup]="feesdetail">
-    <div class="form-group col-md-4" >
-      <label for="">Course Id</label>
-      <input type="number" name="Student Id" class="form-control" formControlName="StudentId">
-    </div><br>
-    
-    <div class="form-group col-md-4">
-      <label for="">Fees</label>
-      <input type="number" name="Fees" class="form-control" formControlName="Amount">
-    </div><br>
-    
-    
-    <div class="form-group col-md-4">
-      <label for="">Last Date for Payment</label>
-      <input type="date" name="DateOfPayment" class="form-control" formControlName="DateOfPayment">
-    </div><br>
-    
-    <button type="submit" (click)="addfeesdetails()" class="btn btn-primary">add</button>
-    </form>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <form #addFeeDetailForm="ngForm" (ngSubmit)="submitToServer()">
+            <div class="form-group mb-3">
+                <label for="studentId" class="fw-bold mb-1">Student name:</label>
+                <select class="form-select" id="userId" name="studentId" [(ngModel)]="source.studentId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of students" [value]="obj.studentId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="feeName" class="fw-bold mb-1">Name :</label>
+                <select class="form-select" id="feeName" name="feeName" [(ngModel)]="source.feeName">
+                    <option selected disabled>Select an option</option>
+                    <option selected value="Tuition Fee">Tuition Fee</option>
+                    <option selected value="Exam Fee">Exam Fee</option>
+                    <option selected value="University Fee">University Fee</option>
+                    <option selected value="Sports Fee">Sports Fee</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="amount" class="fw-bold mb-1">Amount (in INR):</label>
+                <input class="form-control" type="number" id="amount" name="amount" [(ngModel)]="source.amount">
+            </div>
+            <div class="form-group mb-3">
+                <label for="targetDate" class="fw-bold mb-1">Due date:</label>
+                <input class="form-control" type="date" id="targetDate" name="targetDate"
+                       [(ngModel)]="source.dueDate">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

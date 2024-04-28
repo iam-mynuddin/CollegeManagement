@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Assignment } from '../_models/assignment';
 
 @Component({
   selector: 'app-view-assignment',

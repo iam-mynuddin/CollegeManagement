@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Leave } from '../_models/leave';
 
 @Component({
   selector: 'app-view-leave',
@@ -17,7 +16,7 @@ export class ViewLeaveComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.http.get('https://localhost:7141/api/leavedetails/getleavedetails').subscribe({
+    this.http.get('https://localhost:7141/api/leavedetails/getleaverequests').subscribe({
       next: response => {
         this.result = response;
       },

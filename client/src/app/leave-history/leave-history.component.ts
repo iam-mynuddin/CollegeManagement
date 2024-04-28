@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Leave } from '../_models/leave';
 
 @Component({
   selector: 'app-leave-history',
@@ -18,7 +17,7 @@ export class LeaveHistoryComponent implements OnInit {
   ngOnInit(): void {
 
     this.http.get('https://localhost:7141/api/leavedetails/getleavehistory').subscribe({
-      next: response => {
+      next: response=> {
         this.result = response;
       },
       error: error => {

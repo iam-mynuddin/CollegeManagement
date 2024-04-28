@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, retry } from 'rxjs/operators';
-import { User } from '../_models/user';
+import { UserDto } from '../_models/models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,12 @@ export class AuthService {
   public strCurrentUser: any;
   public strCurrentUserType: any;
 
-  public currentUserSource = new BehaviorSubject<User|null>(null);
+  public currentUserSource = new BehaviorSubject<UserDto|null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
   }
-  setCurrentUser(user: User) {
+  setCurrentUser(user: UserDto) {
     this.currentUserSource.next(user)
   }
   validateLogin(userDetails: any) {

@@ -4,22 +4,22 @@
         <div class="">
             <div class="card">
                 <div class="d-flex justify-content-center">
-                    <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+                    <form #loginForm="ngForm" (ngSubmit)="loginUser()" name="loginForm">
                         <div>
                             <div class="form-group col-12 pt-3 mb-3">
                                 <label for="username" class="fw-bold pb-3">Username / Email </label>
                                 <span class="text-danger"> *</span>
                                 <input type="text" class="form-control w-100" placeholder="Enter email / username"
-                                       id="username" name="userName" [(ngModel)]="source.userName">
+                                       id="username" name="userName" [(ngModel)]="source.userName"required>
                             </div>
                             <div class="form-group col-12 mb-3">
                                 <label for="password" class="fw-bold pb-3">Password</label>
                                 <span class="text-danger"> *</span>
                                 <input type="password" class="form-control w-100" placeholder="Enter password"
-                                       id="password" name="password" [(ngModel)]="source.password">
+                                       id="password" name="password" [(ngModel)]="source.password" required>
                             </div>
                             <div class="text-center pb-3">
-                                <button type="submit" class="btn btn-outline-success">LOGIN</button>
+                                <button type="submit" class="btn btn-outline-success" ng-disabled="loginForm.$invalid">LOGIN</button>
                             </div>
                         </div>
                     </form>

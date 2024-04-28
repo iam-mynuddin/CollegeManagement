@@ -1,20 +1,26 @@
-<form [formGroup]="leave">
 
-    <div class="form-group col-md-4" >
-      <label for="">UserId</label>
-      <input type="number" name="UserId" class="form-control" formControlName="UserId">
-    </div><br>
-  
-    <div class="form-group col-md-4" >
-      <label for="">DateOfLeave</label>
-      <input type="date" name="DateOfLeave" class="form-control" formControlName="DateOfLeave">
-    </div><br>
-    
-     
-    <div class="form-group col-md-4">
-      <label for="">Reason</label>
-      <input type="text" name="Reason" class="form-control" formControlName="Reason">
-    </div><br>
-    
-    <button type="submit" (click)="addleave()" class="btn btn-primary">Request</button>
-    </form>
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <form #raiseIssueForm="ngForm" (ngSubmit)="submitToServer()">
+            <div class="form-group mb-3">
+                <label for="userId" class="fw-bold mb-1">Your name:</label>
+                <select class="form-select" id="userId" name="userId" [(ngModel)]="source.userId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of allUsers" [value]="obj.userId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="dateOfLeave" class="fw-bold mb-1">Date:</label>
+                <input class="form-control" type="date" id="dateOfLeave" name="dateOfLeave"
+                [(ngModel)]="source.dateOfLeave">
+            </div>
+            <div class="form-group mb-3">
+                <label for="reason" class="fw-bold mb-1">Reason:</label>
+                <textarea class="form-control" id="reason" rows="3" name="reason" [(ngModel)]="source.reason"></textarea>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

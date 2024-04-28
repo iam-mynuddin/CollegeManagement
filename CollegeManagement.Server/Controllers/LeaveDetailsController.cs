@@ -13,30 +13,13 @@ namespace CollegeManagement.Server.Controllers
 			_dbContext = dbContext;
 		}
 		[HttpPost("requestleave")]
-		public IActionResult RequestLeave(LeaveDetail leaveDetail)
+		public IActionResult RequestLeave(LeaveDetail obj)
 		{
-			if (!ModelState.IsValid)
-			{
-				return BadRequest("Invalid Request");
-			}
-			try
-			{
-
-				var Obj = new LeaveDetail();
-
-				Obj.DateOfLeave = leaveDetail.DateOfLeave;
-				Obj.IsApproved = false;
-				Obj.UserId = leaveDetail.UserId;
-				Obj.Reason = leaveDetail.Reason;
-
-				_dbContext.LeaveDetails.Add(Obj);
-
-				return Ok();
-			}
-			catch
-			{
-				return BadRequest("Invalid Request");
-			}
+			if (!ModelState.IsValid) return BadRequest("Invalid Request");
+			_dbContext.LeaveDetails.Add(obj);
+			_dbContext.SaveChanges();
+			_dbContext.LeaveDetails.Entry(obj).Reload();
+			return Ok(obj);
 		}
 		[HttpGet]
 		[Route("getattendance")]
@@ -47,45 +30,36 @@ namespace CollegeManagement.Server.Controllers
 
 		}
 		[HttpGet]
-		[Route("getleavedetailsbyid/{studentId}")]
-		public IActionResult GetStudentDetailsById(int studentId)
+		[Route("getleavedetailsbyid/{userId}")]
+		public IActionResult GetLeaveDetailsById(int userId)
 		{
-
-			if (studentId != 0)
+			if (userId != 0)
 			{
-				if (!ModelState.IsValid)
-					return BadRequest(ModelState);
-				var res = _dbContext.LeaveDetails.Select(x => x.UserId == studentId);
-
-				if (res != null)
-				{
-					return Ok(res);
-				}
-
+				var res = _dbContext.LeaveDetails.Select(x => x.UserId == userId);
+				if (res == null) return NotFound();
+				return Ok(res);
 			}
-
-			return NotFound();
+			return BadRequest();
 		}
 		[HttpGet]
-		[Route("getleavedetails")]
-		public IActionResult GetStudentDetails()
+		[Route("getleaverequests")]
+		public IActionResult GetLeaveRequests()
 		{
-			var res = _dbContext.LeaveDetails.Where(u=>u.IsApproved==false).Include(u=>u.User).ToList();
+			var res = _dbContext.LeaveDetails.Where(u => u.IsApproved == false).Include(u => u.User).ToList();
 			return Ok(res);
 		}
 		[HttpGet]
 		[Route("getleavehistory")]
 		public IActionResult GetLeaveHistory()
 		{
-			var res = _dbContext.LeaveDetails.Include(u => u.User).ToList();
+			var res = _dbContext.LeaveDetails.Where(u => u.DateOfLeave < DateOnly.FromDateTime(DateTime.UtcNow)).Include(u => u.User).ToList();
 			return Ok(res);
 		}
-		//pending -rename
 		[HttpPut]
-		[Route("put/{LeaveDetailsId}")]
-		public IActionResult put(int LeaveDetailsId)
+		[Route("updateleaverequest/{id}")]
+		public IActionResult UpdateLeaveRequest(int id)
 		{
-			var boolResult = _dbContext.LeaveDetails.Any(x => x.Id == LeaveDetailsId);
+			var boolResult = _dbContext.LeaveDetails.Any(x => x.Id == id);
 			if (boolResult)
 			{
 				return Ok();

@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Calendar } from '../_models/calender';
 
 @Component({
   selector: 'app-view-calender',

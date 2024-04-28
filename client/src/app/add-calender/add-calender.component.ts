@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GetDataService } from '../_services/get-data.service';
 
 @Component({
   selector: 'app-add-calender',
@@ -9,32 +10,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddCalenderComponent implements OnInit {
 
-  calender:any;
+  source: any = {};
+  
+  constructor(private http: HttpClient, private getData: GetDataService) {
+  }
 
-
-  constructor(private http:HttpClient,private fb :FormBuilder) {
-    this.calender=this.fb.group({
-      DateOfEdit:['',[Validators.required]],
-      Status:['',[Validators.required]],
-      Reason:['',[Validators.required]]
-    
-    });
-   }
   ngOnInit(): void {
   }
-  addcalender(){
-    const cal={
-      DateOfEdit:this.calender.get("DateOfEdit")?.value,
-      Status:this.calender.get("Status")?.value,
-      Reason:this.calender.get("Reason")?.value
-    }
-    this.http.post('https://localhost:7141/api/calendar/addcalendar', cal).subscribe(
-      (data)=>{alert('saved successfully');},
-      (err)=>{console.log(err);
-        alert('Error saving data');
+  submitToServer() {
+    this.http.post('https://localhost:7141/api/calendar/addcalendar', this.source).subscribe({
+      next: response => {
+        alert('Event added!');
+      },
+      error: error => {
+        alert('Error! check console!');
+        console.log(error);
+      }
     });
-        
-    
   }
-
 }

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './_services/auth.service';
-import { User } from './_models/user';
 import { map } from 'rxjs';
+import { UserDto } from './_models/models';
 
 interface WeatherForecast {
   date: string;
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   setCurrentUser() {
     const strUser = localStorage.getItem('user');
     if (!strUser) return;
-    const user: User = JSON.parse(strUser);
+    const user: UserDto = JSON.parse(strUser);
     //console.log(user);
     this.auth.strCurrentUserType = user.userType;
     this.auth.strCurrentUser = user.userName;

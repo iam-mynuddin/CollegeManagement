@@ -5,54 +5,48 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CollegeManagement.Server.Controllers
 {
-    public class FeeController : MyBaseController
-    {
-        private readonly ApplicationDbContext _dbContext;
+	public class FeeController : MyBaseController
+	{
+		private readonly ApplicationDbContext _dbContext;
 
-        public FeeController(ApplicationDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-        
-        [HttpGet]
-        [Route("getfeedetails")]
-        public IActionResult GetFeeDetails()
-        {
-            var objList = _dbContext.FeeDetails.Include(u=>u.Student).ToList();
-            return Ok(objList);
+		public FeeController(ApplicationDbContext dbContext)
+		{
+			_dbContext = dbContext;
+		}
 
-        }
-        [HttpPost("uploadfeedetails")]
-        public IActionResult UploadFeeDetails(FeeDetail obj)
-        {
-            try
-            {
-                var entry = _dbContext.FeeDetails.Add(obj);
-                _dbContext.SaveChanges();
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest("Failed to add data");
-            }
-        }
+		[HttpGet]
+		[Route("getfeedetails")]
+		public IActionResult GetFeeDetails()
+		{
+			var objList = _dbContext.FeeDetails.Include(u => u.Student).ToList();
+			return Ok(objList);
 
-        [HttpGet]
-        [Route("getfeedetailsbyid/{studentid}")]
-        public IActionResult GetFeeDetailsById(int studentid)
-        {
-            if (studentid != 0)
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
-                var res = _dbContext.FeeDetails.Select(x => x.StudentId == studentid);
-                if (res != null)
-                {
-                    return Ok(res);
-                }
+		}
+		[HttpPost("addfeedetails")]
+		public IActionResult AddFeeDetails(FeeDetail obj)
+		{
+			if (!ModelState.IsValid)
+				return BadRequest(ModelState);
+			_dbContext.FeeDetails.Add(obj);
+			_dbContext.SaveChanges();
+			_dbContext.FeeDetails.Entry(obj).Reload();
+			return Ok(obj);
+		}
 
-            }
-            return NotFound();
-        }
-    }
+		[HttpGet]
+		[Route("getfeedetailsbystudentid/{id}")]
+		public IActionResult GetFeeDetailsById(int id)
+		{
+			if (id != 0)
+			{
+				var res = _dbContext.FeeDetails.Select(x => x.StudentId == id);
+				if (res != null)
+				{
+					return Ok(res);
+				}
+
+			}
+			return NotFound();
+		}
+	}
 }

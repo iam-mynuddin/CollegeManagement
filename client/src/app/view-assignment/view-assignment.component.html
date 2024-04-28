@@ -9,8 +9,10 @@
             <th>Subject</th>
             <th>Assigned to</th>
             <th>Question</th>
-            <th>Last date for submission</th>
-            <th>Submited on</th>
+            <th>Alloted by</th>
+            <th>Alloted on</th>
+            <th>Due By</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -20,17 +22,11 @@
             <td>{{obj.subject.subjectName}}</td>
             <td>{{obj.student.fullName}}</td>
             <td>{{obj.question}}</td>
-            <td>{{obj.dueDate}}</td>
-            <td *ngIf="obj.submissionTime; else notSumbitted">
-                {{obj.submissionTime}}
-            </td>
-            <ng-template #notSumbitted>
-                <td>
-                    Not yet submitted
-                </td>
-            </ng-template>
-
-
+            <td>{{obj.faculty.fullName}}</td>
+            <td>{{obj.allotedDate}}</td>
+            <td>{{obj.targetDate}}</td>
+            <td>{{obj.status}}</td>
+            
         </tr>
     </tbody>
 </table>

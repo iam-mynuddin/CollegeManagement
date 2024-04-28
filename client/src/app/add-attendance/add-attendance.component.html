@@ -1,44 +1,44 @@
-<form [formGroup]="attendance" class="form">
-  <div class="form-group col-md-4">
-    <label for="">Faculty Id</label>
-    <select name="Status" class="form-control" formControlName="FacultyId">
-      <option value="1">1</option>>
-      <option value="2">2</option>
-      <option value="3">3</option>>
-      <option value="4">4</option>>
-      <option value="5">5</option>>
-      <option value="6">6</option>>
-      <option value="7">7</option>>
-    </select>
-  </div><br>
-    
-    
-    <div class="form-group col-md-4">
-      <label for="">Student Id</label>
-      <select name="Status" class="form-control" formControlName="StudentId">
-        <option value="1">1</option>>
-        <option value="2">2</option>
-        <option value="3">3</option>>
-        <option value="4">4</option>>
-        <option value="5">5</option>>
-        <option value="6">6</option>>
-        <option value="7">7</option>>
-      </select>
-    </div><br>
-    
-    
-    <div class="form-group col-md-4" >
-      <label for="">Date</label>
-      <input type="date" name="Date" class="form-control" formControlName="AttendanceDate">
-    </div><br>
-  
-    <div class="form-group col-md-4">
-      <label for="">Present/Absent</label>
-      <select name="IsPresent" class="form-control" formControlName="IsPresent">
-        <option value="Present">Present</option>>
-        <option value="Absent">Absent</option>
-      </select>
-    </div><br>
-    
-    <button type="submit" (click)="addattendance()" class="btn btn-primary">add</button>
-    </form>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-lg-6">
+        <form #addAttendanceForm="ngForm" (ngSubmit)="submitToServer()">
+            <div class="form-group mb-3">
+                <label for="facultyId" class="fw-bold mb-1">Your name:</label>
+                <select class="form-select" id="facultyId" name="facultyId" [(ngModel)]="source.facultyId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of faculties" [value]="obj.facultyId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="studentId" class="fw-bold mb-1">Student name:</label>
+                <select class="form-select" id="studentId" name="studentId" [(ngModel)]="source.studentId">
+                    <option selected disabled>Select an option</option>
+                    <option *ngFor="let obj of students" [value]="obj.studentId">{{obj.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label for="attendanceDate" class="fw-bold mb-1">Date:</label>
+                <input class="form-control" type="date" id="attendanceDate" name="attendanceDate"
+                       [(ngModel)]="source.attendanceDate">
+            </div>
+            <div class="form-group mb-3">
+                <span class="">
+                    <label for="subjectId" class="fw-bold mb-1">Present / Absent:</label>
+                </span>
+                <span class="px-2">
+                    <input type="radio" class="form-check-input" [(ngModel)]="source.isPresent" name="isPresent" [value]="true">
+                    <label class="fw-bold mb-1 px-2">
+                        True
+                    </label>
+                    <input type="radio" class="form-check-input" [(ngModel)]="source.isPresent" name="isPresent" [value]="false">
+                    <label class="fw-bold mb-1 px-2">
+                        False
+                    </label>
+                </span>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
